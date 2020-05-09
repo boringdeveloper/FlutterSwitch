@@ -1,8 +1,8 @@
 name: flutter_switch
-description: A new Flutter package project.
+description: A Custom Switch package created for Flutter.
 version: 0.0.1
-author:
-homepage:
+author: Nichole John Romero <romero.nicholejohn@gmail.com>
+homepage: https://github.com/boringdeveloper/CustomSwitch
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
