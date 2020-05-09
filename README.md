@@ -178,7 +178,7 @@ class _MyHomePageState extends State<MyHomePage> {
 ```
 ## Demo
 
- ![flutter_switch]() 
+ ![flutter_switch](https://media.giphy.com/media/Q5FEklNzESXNbHwZ40/giphy.gif) 
 
 
 ## Developed By
@@ -187,10 +187,10 @@ class _MyHomePageState extends State<MyHomePage> {
 Nichole John Romero
 ```
 
-<a href="https://www.linkedin.com/in/nichole-john-talban-romero/"><img src="https://image.flaticon.com/icons/svg/174/174848.svg" width="60"></a>
-<a href="https://www.facebook.com/nickrgamer04/"><img src="https://image.flaticon.com/icons/svg/174/174857.svg" width="60"></a>
+<a href="https://www.linkedin.com/in/nichole-john-talban-romero/"><img src="https://image.flaticon.com/icons/svg/174/174857.svg" width="60"></a>
+<a href="https://www.facebook.com/nickrgamer04/"><img src="https://image.flaticon.com/icons/svg/174/174848.svg" width="60"></a>
 
-# 📃 License
+# License
 
     BSD 3-Clause License
 
