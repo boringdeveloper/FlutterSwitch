@@ -2,8 +2,6 @@
 
 A Custom Switch package created for Flutter.
 
-## Give the repo some :heart: and :star: to support the project
-
  [![GitHub followers](https://img.shields.io/github/followers/boringdeveloper.svg?style=social&label=Follow)](https://github.com/boringdeveloper)  <a href="https://www.linkedin.com/in/nichole-john-talban-romero/"><img src="https://image.flaticon.com/icons/svg/174/174857.svg" width="20"></a>  <a href="https://www.facebook.com/nickrgamer04/"><img src="https://image.flaticon.com/icons/svg/174/174848.svg" width="20"></a>
 
 ## Demo
@@ -16,7 +14,8 @@ A Custom Switch package created for Flutter.
 In the `dependencies:` section of your `pubspec.yaml`, add the following line:
 
 ```yaml
-flutter_switch: <latest_version>
+dependencies:
+  flutter_switch: ^0.0.3
 ```
 
 Import in your project:
@@ -33,10 +32,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   bool status = false;
-  bool status2 = false;
-  bool status3 = false;
-  bool status4 = false;
-  bool status5 = false;
 
   @override
   Widget build(BuildContext context) {
@@ -44,137 +39,23 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text("FlutterSwitch Demo"),
       ),
-      body: Container(
-        padding: EdgeInsets.all(10.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text("Default"),
-            SizedBox(height: 10.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                FlutterSwitch(
-                  value: status1,
-                  onToggle: (val) {
-                    setState(() {
-                      status1 = val;
-                    });
-                  },
-                ),
-                Container(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    "Value: $status1",
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 20.0),
-            Text("Custom Colors"),
-            SizedBox(height: 10.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                FlutterSwitch(
-                  activeColor: Colors.red,
-                  inactiveColor: Colors.red[200],
-                  value: status2,
-                  onToggle: (val) {
-                    setState(() {
-                      status2 = val;
-                    });
-                  },
-                ),
-                Container(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    "Value: $status2",
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 20.0),
-            Text("With 'On' and 'Off' text and custom text colors"),
-            SizedBox(height: 10.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                FlutterSwitch(
-                  showOnOff: true,
-                  activeTextColor: Colors.black,
-                  inactiveTextColor: Colors.blue[50],
-                  value: status3,
-                  onToggle: (val) {
-                    setState(() {
-                      status3 = val;
-                    });
-                  },
-                ),
-                Container(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    "Value: $status3",
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 20.0),
-            Text("Custom size"),
-            SizedBox(height: 10.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                FlutterSwitch(
-                  width: 55.0,
-                  height: 25.0,
-                  valueFontSize: 12.0,
-                  toggleSize: 18.0,
-                  value: status4,
-                  onToggle: (val) {
-                    setState(() {
-                      status4 = val;
-                    });
-                  },
-                ),
-                Container(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    "Value: $status4",
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 20.0),
-            Text("Custom border radius and padding"),
-            SizedBox(height: 10.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                FlutterSwitch(
-                  width: 125.0,
-                  height: 55.0,
-                  valueFontSize: 25.0,
-                  toggleSize: 45.0,
-                  value: status5,
-                  borderRadius: 30.0,
-                  padding: 8.0,
-                  showOnOff: true,
-                  onToggle: (val) {
-                    setState(() {
-                      status5 = val;
-                    });
-                  },
-                ),
-                Container(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    "Value: $status5",
-                  ),
-                ),
-              ],
-            ),
-          ],
+      body: Center(
+        child: Container(
+          child: FlutterSwitch(
+            width: 125.0,
+            height: 55.0,
+            valueFontSize: 25.0,
+            toggleSize: 45.0,
+            value: status5,
+            borderRadius: 30.0,
+            padding: 8.0,
+            showOnOff: true,
+            onToggle: (val) {
+              setState(() {
+                status5 = val;
+              });
+            },
+          ),
         ),
       ),
     );
@@ -182,11 +63,12 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 ```
 
-
 ## Want to Contribute?
 
     Contributions to this project is very much welcome. Let's work together to maintain and improve the project
     Simply Fork the repository, Commit and Push your changes and create a new Pull Request.
+
+    If you have some suggestions, you can reach me at romero.nicholejohn@gmail.com
 
 # License
 
