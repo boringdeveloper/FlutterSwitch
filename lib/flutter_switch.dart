@@ -4,29 +4,29 @@ import 'package:flutter/material.dart';
 
 class FlutterSwitch extends StatefulWidget {
   final bool value;
-  final ValueChanged<bool> onChanged;
+  final ValueChanged<bool> onToggle;
   final Color activeColor;
   final Color inactiveColor;
-  final String activeText;
-  final String inactiveText;
   final Color activeTextColor;
   final Color inactiveTextColor;
-  final double width, height, toggleSize, valueFontSize;
+  final double width, height, toggleSize, valueFontSize, borderRadius, padding;
+  final bool showOnOff;
 
   const FlutterSwitch({
     Key key,
     this.value,
-    this.onChanged,
-    this.activeColor,
+    this.onToggle,
+    this.activeColor = Colors.blue,
     this.inactiveColor = Colors.grey,
-    this.activeText,
-    this.inactiveText,
     this.activeTextColor = Colors.white70,
     this.inactiveTextColor = Colors.white70,
     this.width = 70.0,
     this.height = 35.0,
     this.toggleSize = 25.0,
     this.valueFontSize = 16.0,
+    this.borderRadius = 20.0,
+    this.padding = 4.0,
+    this.showOnOff = false,
   }) : super(key: key);
 
   @override
@@ -66,72 +66,65 @@ class _FlutterSwitchState extends State<FlutterSwitch>
               _animationController.forward();
             }
             widget.value == false
-                ? widget.onChanged(true)
-                : widget.onChanged(false);
+                ? widget.onToggle(true)
+                : widget.onToggle(false);
           },
           child: Container(
             width: widget.width,
             height: widget.height,
+            padding: EdgeInsets.all(widget.padding),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20.0),
+              borderRadius: BorderRadius.circular(widget.borderRadius),
               color: _circleAnimation.value == Alignment.centerLeft
                   ? widget.inactiveColor
                   : widget.activeColor,
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  _circleAnimation.value == Alignment.centerRight
-                      ? Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                              left: 4.0,
-                              right: 4.0,
-                            ),
-                            child: Text(
-                              widget.activeText,
-                              style: TextStyle(
-                                  color: widget.activeTextColor,
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: widget.valueFontSize),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                _circleAnimation.value == Alignment.centerRight
+                    ? Expanded(
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 4.0),
+                          child: Text(
+                            widget.showOnOff ? "On" : "",
+                            style: TextStyle(
+                              color: widget.activeTextColor,
+                              fontWeight: FontWeight.w900,
+                              fontSize: widget.valueFontSize,
                             ),
                           ),
-                        )
-                      : Container(),
-                  Align(
-                    alignment: _circleAnimation.value,
-                    child: Container(
-                      width: widget.toggleSize,
-                      height: widget.toggleSize,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white,
-                      ),
+                        ),
+                      )
+                    : Container(),
+                Align(
+                  alignment: _circleAnimation.value,
+                  child: Container(
+                    width: widget.toggleSize,
+                    height: widget.toggleSize,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white,
                     ),
                   ),
-                  _circleAnimation.value == Alignment.centerLeft
-                      ? Expanded(
-                          child: Container(
-                            alignment: Alignment.centerRight,
-                            padding: const EdgeInsets.only(
-                              left: 4.0,
-                              right: 5.0,
-                            ),
-                            child: Text(
-                              widget.inactiveText,
-                              style: TextStyle(
-                                color: widget.inactiveTextColor,
-                                fontWeight: FontWeight.w900,
-                                fontSize: widget.valueFontSize,
-                              ),
+                ),
+                _circleAnimation.value == Alignment.centerLeft
+                    ? Expanded(
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 4.0),
+                          alignment: Alignment.centerRight,
+                          child: Text(
+                            widget.showOnOff ? "Off" : "",
+                            style: TextStyle(
+                              color: widget.inactiveTextColor,
+                              fontWeight: FontWeight.w900,
+                              fontSize: widget.valueFontSize,
                             ),
                           ),
-                        )
-                      : Container(),
-                ],
-              ),
+                        ),
+                      )
+                    : Container(),
+              ],
             ),
           ),
         );
