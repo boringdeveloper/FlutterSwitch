@@ -73,21 +73,23 @@ class _FlutterSwitchState extends State<FlutterSwitch>
             width: widget.width,
             height: widget.height,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20.0),
-                color: _circleAnimation.value == Alignment.centerLeft
-                    ? widget.inactiveColor
-                    : widget.activeColor),
+              borderRadius: BorderRadius.circular(20.0),
+              color: _circleAnimation.value == Alignment.centerLeft
+                  ? widget.inactiveColor
+                  : widget.activeColor,
+            ),
             child: Padding(
-              padding: const EdgeInsets.only(
-                  top: 4.0, bottom: 4.0, right: 4.0, left: 4.0),
+              padding: const EdgeInsets.all(4.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   _circleAnimation.value == Alignment.centerRight
                       ? Expanded(
                           child: Padding(
-                            padding:
-                                const EdgeInsets.only(left: 4.0, right: 4.0),
+                            padding: const EdgeInsets.only(
+                              left: 4.0,
+                              right: 4.0,
+                            ),
                             child: Text(
                               widget.activeText,
                               style: TextStyle(
@@ -104,21 +106,26 @@ class _FlutterSwitchState extends State<FlutterSwitch>
                       width: widget.toggleSize,
                       height: widget.toggleSize,
                       decoration: BoxDecoration(
-                          shape: BoxShape.circle, color: Colors.white),
+                        shape: BoxShape.circle,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   _circleAnimation.value == Alignment.centerLeft
                       ? Expanded(
                           child: Container(
                             alignment: Alignment.centerRight,
-                            padding:
-                                const EdgeInsets.only(left: 4.0, right: 5.0),
+                            padding: const EdgeInsets.only(
+                              left: 4.0,
+                              right: 5.0,
+                            ),
                             child: Text(
                               widget.inactiveText,
                               style: TextStyle(
-                                  color: widget.inactiveTextColor,
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: widget.valueFontSize),
+                                color: widget.inactiveTextColor,
+                                fontWeight: FontWeight.w900,
+                                fontSize: widget.valueFontSize,
+                              ),
                             ),
                           ),
                         )
