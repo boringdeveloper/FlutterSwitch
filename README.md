@@ -6,6 +6,11 @@ A Custom Switch package created for Flutter.
 
  [![GitHub followers](https://img.shields.io/github/followers/boringdeveloper.svg?style=social&label=Follow)](https://github.com/boringdeveloper)
 
+## Demo
+
+ ![flutter_switch](https://media.giphy.com/media/Q5FEklNzESXNbHwZ40/giphy.gif) 
+
+
 ## Installation
 
 In the `dependencies:` section of your `pubspec.yaml`, add the following line:
@@ -176,10 +181,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 ```
-## Demo
-
- ![flutter_switch](https://media.giphy.com/media/Q5FEklNzESXNbHwZ40/giphy.gif) 
-
 
 ## Developed By
 
@@ -187,8 +188,14 @@ class _MyHomePageState extends State<MyHomePage> {
 Nichole John Romero
 ```
 
-<a href="https://www.linkedin.com/in/nichole-john-talban-romero/"><img src="https://image.flaticon.com/icons/svg/174/174857.svg" width="60"></a>
-<a href="https://www.facebook.com/nickrgamer04/"><img src="https://image.flaticon.com/icons/svg/174/174848.svg" width="60"></a>
+<a href="https://www.linkedin.com/in/nichole-john-talban-romero/"><img src="https://image.flaticon.com/icons/svg/174/174857.svg" width="30"></a>
+<a href="https://www.facebook.com/nickrgamer04/"><img src="https://image.flaticon.com/icons/svg/174/174848.svg" width="30"></a>
+
+
+## Want to Contribute?
+
+    Contributions to this project is very much welcome. Let's work together to maintain and improve the
+    Simply Fork the repository, Commit and Push your changes and create a new Pull Request.
 
 # License
 
