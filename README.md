@@ -194,7 +194,7 @@ Nichole John Romero
 
 ## Want to Contribute?
 
-    Contributions to this project is very much welcome. Let's work together to maintain and improve the
+    Contributions to this project is very much welcome. Let's work together to maintain and improve the project
     Simply Fork the repository, Commit and Push your changes and create a new Pull Request.
 
 # License

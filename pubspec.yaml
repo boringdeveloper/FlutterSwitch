@@ -1,7 +1,6 @@
 name: flutter_switch
 description: A Custom Switch package created for Flutter.
 version: 0.0.1
-author: Nichole John Romero <romero.nicholejohn@gmail.com>
 homepage: https://github.com/boringdeveloper/CustomSwitch
 
 environment:
