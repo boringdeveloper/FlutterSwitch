@@ -4,7 +4,7 @@ A Custom Switch package created for Flutter.
 
 ## Give the repo some :heart: and :star: to support the project
 
- [![GitHub followers](https://img.shields.io/github/followers/boringdeveloper.svg?style=social&label=Follow)](https://github.com/boringdeveloper)
+ [![GitHub followers](https://img.shields.io/github/followers/boringdeveloper.svg?style=social&label=Follow)](https://github.com/boringdeveloper)  <a href="https://www.linkedin.com/in/nichole-john-talban-romero/"><img src="https://image.flaticon.com/icons/svg/174/174857.svg" width="20"></a>  <a href="https://www.facebook.com/nickrgamer04/"><img src="https://image.flaticon.com/icons/svg/174/174848.svg" width="20"></a>
 
 ## Demo
 
@@ -181,15 +181,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 ```
-
-## Developed By
-
-```
-Nichole John Romero
-```
-
-<a href="https://www.linkedin.com/in/nichole-john-talban-romero/"><img src="https://image.flaticon.com/icons/svg/174/174857.svg" width="30"></a>
-<a href="https://www.facebook.com/nickrgamer04/"><img src="https://image.flaticon.com/icons/svg/174/174848.svg" width="30"></a>
 
 
 ## Want to Contribute?
