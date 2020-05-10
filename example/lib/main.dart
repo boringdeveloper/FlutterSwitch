@@ -68,6 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 FlutterSwitch(
                   activeColor: Colors.red,
                   inactiveColor: Colors.red[200],
+                  toggleColor: Colors.blueGrey[700],
                   value: status2,
                   onToggle: (val) {
                     setState(() {

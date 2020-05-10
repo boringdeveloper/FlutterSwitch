@@ -3,14 +3,14 @@ library flutter_switch;
 import 'package:flutter/material.dart';
 
 class FlutterSwitch extends StatefulWidget {
-  final bool value;
+  final bool value, showOnOff;
   final ValueChanged<bool> onToggle;
-  final Color activeColor;
-  final Color inactiveColor;
-  final Color activeTextColor;
-  final Color inactiveTextColor;
+  final Color activeColor,
+      inactiveColor,
+      activeTextColor,
+      inactiveTextColor,
+      toggleColor;
   final double width, height, toggleSize, valueFontSize, borderRadius, padding;
-  final bool showOnOff;
 
   const FlutterSwitch({
     Key key,
@@ -20,6 +20,7 @@ class FlutterSwitch extends StatefulWidget {
     this.inactiveColor = Colors.grey,
     this.activeTextColor = Colors.white70,
     this.inactiveTextColor = Colors.white70,
+    this.toggleColor = Colors.white,
     this.width = 70.0,
     this.height = 35.0,
     this.toggleSize = 25.0,
@@ -35,7 +36,7 @@ class FlutterSwitch extends StatefulWidget {
 
 class _FlutterSwitchState extends State<FlutterSwitch>
     with SingleTickerProviderStateMixin {
-  Animation _circleAnimation;
+  Animation _toggleAnimation;
   AnimationController _animationController;
 
   @override
@@ -45,7 +46,7 @@ class _FlutterSwitchState extends State<FlutterSwitch>
       vsync: this,
       duration: Duration(milliseconds: 60),
     );
-    _circleAnimation = AlignmentTween(
+    _toggleAnimation = AlignmentTween(
       begin: widget.value ? Alignment.centerRight : Alignment.centerLeft,
       end: widget.value ? Alignment.centerLeft : Alignment.centerRight,
     ).animate(
@@ -75,14 +76,14 @@ class _FlutterSwitchState extends State<FlutterSwitch>
             padding: EdgeInsets.all(widget.padding),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(widget.borderRadius),
-              color: _circleAnimation.value == Alignment.centerLeft
+              color: _toggleAnimation.value == Alignment.centerLeft
                   ? widget.inactiveColor
                   : widget.activeColor,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                _circleAnimation.value == Alignment.centerRight
+                _toggleAnimation.value == Alignment.centerRight
                     ? Expanded(
                         child: Container(
                           padding: EdgeInsets.symmetric(horizontal: 4.0),
@@ -98,17 +99,17 @@ class _FlutterSwitchState extends State<FlutterSwitch>
                       )
                     : Container(),
                 Align(
-                  alignment: _circleAnimation.value,
+                  alignment: _toggleAnimation.value,
                   child: Container(
                     width: widget.toggleSize,
                     height: widget.toggleSize,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.white,
+                      color: widget.toggleColor,
                     ),
                   ),
                 ),
-                _circleAnimation.value == Alignment.centerLeft
+                _toggleAnimation.value == Alignment.centerLeft
                     ? Expanded(
                         child: Container(
                           padding: EdgeInsets.symmetric(horizontal: 4.0),
