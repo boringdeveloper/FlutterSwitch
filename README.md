@@ -15,7 +15,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  flutter_switch: ^0.0.3
+  flutter_switch: ^0.1.0
 ```
 
 You can install packages from the command line with Flutter:
