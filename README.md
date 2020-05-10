@@ -1,6 +1,6 @@
 # flutter_switch
 
-A Custom Switch package created for Flutter.
+An easy to implement custom switch created for Flutter. You can have a customized the height and width, border radius, colors, toggle size and choice to display an 'On' and 'Off' text.
 
  [![GitHub followers](https://img.shields.io/github/followers/boringdeveloper.svg?style=social&label=Follow)](https://github.com/boringdeveloper)  <a href="https://www.linkedin.com/in/nichole-john-talban-romero/"><img src="https://image.flaticon.com/icons/svg/174/174857.svg" width="20"></a>  <a href="https://www.facebook.com/nickrgamer04/"><img src="https://image.flaticon.com/icons/svg/174/174848.svg" width="20"></a>
 
@@ -9,13 +9,18 @@ A Custom Switch package created for Flutter.
  ![flutter_switch](https://media.giphy.com/media/Q5FEklNzESXNbHwZ40/giphy.gif) 
 
 
-## Installation
+## Use this package as a library
 
-In the `dependencies:` section of your `pubspec.yaml`, add the following line:
+Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
   flutter_switch: ^0.0.3
+```
+
+You can install packages from the command line with Flutter:
+```bash
+$ flutter pub get
 ```
 
 Import in your project:
