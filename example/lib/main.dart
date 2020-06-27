@@ -173,7 +173,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 FlutterSwitch(
                   activeText: "All Good",
-                  offText: "Under Quarantine",
+                  inactiveText: "Under Quarantine",
                   value: status6,
                   valueFontSize: 10.0,
                   width: 110,

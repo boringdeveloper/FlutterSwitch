@@ -11,7 +11,7 @@ class FlutterSwitch extends StatefulWidget {
       inactiveTextColor,
       toggleColor;
   final double width, height, toggleSize, valueFontSize, borderRadius, padding;
-  final String activeText, offText;
+  final String activeText, inactiveText;
 
   const FlutterSwitch(
       {Key key,
@@ -30,7 +30,7 @@ class FlutterSwitch extends StatefulWidget {
       this.padding = 4.0,
       this.showOnOff = false,
       this.activeText,
-      this.offText})
+      this.inactiveText})
       : super(key: key);
 
   @override
@@ -110,7 +110,7 @@ class _FlutterSwitchState extends State<FlutterSwitch>
                         child: Container(
                           padding: EdgeInsets.symmetric(horizontal: 4.0),
                           alignment: Alignment.centerRight,
-                          child: _offText,
+                          child: _inactiveText,
                         ),
                       )
                     : Container(),
@@ -137,10 +137,10 @@ class _FlutterSwitchState extends State<FlutterSwitch>
     return Text("");
   }
 
-  Widget get _offText {
+  Widget get _inactiveText {
     if (widget.showOnOff) {
       return Text(
-        (widget?.offText != null) ? widget.offText : "Off",
+        (widget?.inactiveText != null) ? widget.inactiveText : "Off",
         style: TextStyle(
           color: widget.inactiveTextColor,
           fontWeight: FontWeight.w900,

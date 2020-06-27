@@ -2,7 +2,7 @@
 
 An easy to implement custom switch created for Flutter. You can have a customized the height and width, border radius, colors, toggle size and choice to display an 'On' and 'Off' text.
 
- [![GitHub followers](https://img.shields.io/github/followers/boringdeveloper.svg?style=social&label=Follow)](https://github.com/boringdeveloper)  <a href="https://www.linkedin.com/in/nichole-john-talban-romero/"><img src="https://image.flaticon.com/icons/svg/174/174857.svg" width="20"></a>  <a href="https://www.facebook.com/nickrgamer04/"><img src="https://image.flaticon.com/icons/svg/174/174848.svg" width="20"></a>
+ [![GitHub followers](https://img.shields.io/github/followers/boringdeveloper.svg?style=social&label=Follow)](https://github.com/boringdeveloper)  <a href="https://www.linkedin.com/in/nichole-john-talban-romero/"><img src="https://image.flaticon.com/icons/svg/174/174857.svg" width="20"></a>
 
 ## Demo
 
@@ -15,7 +15,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  flutter_switch: ^0.1.0
+  flutter_switch: ^0.1.1
 ```
 
 You can install packages from the command line with Flutter:
@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
             showOnOff: true,
             onToggle: (val) {
               setState(() {
-                status5 = val;
+                status = val;
               });
             },
           ),

@@ -8,3 +8,7 @@
 * Custom switch padding
 * Choice to display 'on' or 'off' value inside the switch
 * Custom active or inactive value color
+
+## [0.1.1] - June 28, 2020
+
+* Custom switch active and inactive text
