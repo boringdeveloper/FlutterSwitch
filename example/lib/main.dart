@@ -172,19 +172,10 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 FlutterSwitch(
-                  activeText: Text(
-                    "custom",
-                    style: TextStyle(
-                      color: Colors.white
-                    ),
-                  ),
-                  offText: Text(
-                    "Custom2",
-                    style: TextStyle(
-                      color: Colors.black87
-                    ),
-                  ),
+                  activeText: "All Good",
+                  offText: "Under Quarantine",
                   value: status6,
+                  valueFontSize: 10.0,
                   width: 110,
                   borderRadius: 30.0,
                   showOnOff: true,
