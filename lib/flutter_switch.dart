@@ -11,24 +11,27 @@ class FlutterSwitch extends StatefulWidget {
       inactiveTextColor,
       toggleColor;
   final double width, height, toggleSize, valueFontSize, borderRadius, padding;
+  final String activeText, offText;
 
-  const FlutterSwitch({
-    Key key,
-    this.value,
-    this.onToggle,
-    this.activeColor = Colors.blue,
-    this.inactiveColor = Colors.grey,
-    this.activeTextColor = Colors.white70,
-    this.inactiveTextColor = Colors.white70,
-    this.toggleColor = Colors.white,
-    this.width = 70.0,
-    this.height = 35.0,
-    this.toggleSize = 25.0,
-    this.valueFontSize = 16.0,
-    this.borderRadius = 20.0,
-    this.padding = 4.0,
-    this.showOnOff = false,
-  }) : super(key: key);
+  const FlutterSwitch(
+      {Key key,
+      this.value,
+      this.onToggle,
+      this.activeColor = Colors.blue,
+      this.inactiveColor = Colors.grey,
+      this.activeTextColor = Colors.white70,
+      this.inactiveTextColor = Colors.white70,
+      this.toggleColor = Colors.white,
+      this.width = 70.0,
+      this.height = 35.0,
+      this.toggleSize = 25.0,
+      this.valueFontSize = 16.0,
+      this.borderRadius = 20.0,
+      this.padding = 4.0,
+      this.showOnOff = false,
+      this.activeText,
+      this.offText})
+      : super(key: key);
 
   @override
   _FlutterSwitchState createState() => _FlutterSwitchState();
@@ -87,14 +90,7 @@ class _FlutterSwitchState extends State<FlutterSwitch>
                     ? Expanded(
                         child: Container(
                           padding: EdgeInsets.symmetric(horizontal: 4.0),
-                          child: Text(
-                            widget.showOnOff ? "On" : "",
-                            style: TextStyle(
-                              color: widget.activeTextColor,
-                              fontWeight: FontWeight.w900,
-                              fontSize: widget.valueFontSize,
-                            ),
-                          ),
+                          child: _activeText,
                         ),
                       )
                     : Container(),
@@ -114,14 +110,7 @@ class _FlutterSwitchState extends State<FlutterSwitch>
                         child: Container(
                           padding: EdgeInsets.symmetric(horizontal: 4.0),
                           alignment: Alignment.centerRight,
-                          child: Text(
-                            widget.showOnOff ? "Off" : "",
-                            style: TextStyle(
-                              color: widget.inactiveTextColor,
-                              fontWeight: FontWeight.w900,
-                              fontSize: widget.valueFontSize,
-                            ),
-                          ),
+                          child: _offText,
                         ),
                       )
                     : Container(),
@@ -131,5 +120,35 @@ class _FlutterSwitchState extends State<FlutterSwitch>
         );
       },
     );
+  }
+
+  Widget get _activeText {
+    if (widget.showOnOff) {
+      return Text(
+        (widget?.activeText != null) ? widget.activeText : "On",
+        style: TextStyle(
+          color: widget.activeTextColor,
+          fontWeight: FontWeight.w900,
+          fontSize: widget.valueFontSize,
+        ),
+      );
+    }
+
+    return Text("");
+  }
+
+  Widget get _offText {
+    if (widget.showOnOff) {
+      return Text(
+        (widget?.offText != null) ? widget.offText : "Off",
+        style: TextStyle(
+          color: widget.inactiveTextColor,
+          fontWeight: FontWeight.w900,
+          fontSize: widget.valueFontSize,
+        ),
+      );
+    }
+
+    return Text("");
   }
 }

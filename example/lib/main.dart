@@ -26,6 +26,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool status3 = false;
   bool status4 = false;
   bool status5 = false;
+  bool status6 = false;
 
   @override
   Widget build(BuildContext context) {
@@ -164,6 +165,34 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
+            SizedBox(height: 20.0),
+            Text("Custom text"),
+            SizedBox(height: 10.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                FlutterSwitch(
+                  activeText: "All Good",
+                  offText: "Under Quarantine",
+                  value: status6,
+                  valueFontSize: 10.0,
+                  width: 110,
+                  borderRadius: 30.0,
+                  showOnOff: true,
+                  onToggle: (val) {
+                    setState(() {
+                      status6 = val;
+                    });
+                  },
+                ),
+                Container(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    "Value: $status6",
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),
