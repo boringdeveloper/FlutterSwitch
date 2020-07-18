@@ -10,6 +10,7 @@ class FlutterSwitch extends StatefulWidget {
       activeTextColor,
       inactiveTextColor,
       toggleColor;
+  final FontWeight activeFontWeight, inactiveFontWeight;
   final double width, height, toggleSize, valueFontSize, borderRadius, padding;
   final String activeText, inactiveText;
 
@@ -21,6 +22,8 @@ class FlutterSwitch extends StatefulWidget {
       this.inactiveColor = Colors.grey,
       this.activeTextColor = Colors.white70,
       this.inactiveTextColor = Colors.white70,
+      this.activeFontWeight = FontWeight.w900,
+      this.inactiveFontWeight = FontWeight.w900,
       this.toggleColor = Colors.white,
       this.width = 70.0,
       this.height = 35.0,
@@ -128,7 +131,7 @@ class _FlutterSwitchState extends State<FlutterSwitch>
         (widget?.activeText != null) ? widget.activeText : "On",
         style: TextStyle(
           color: widget.activeTextColor,
-          fontWeight: FontWeight.w900,
+          fontWeight: widget.activeFontWeight,
           fontSize: widget.valueFontSize,
         ),
       );
@@ -143,7 +146,7 @@ class _FlutterSwitchState extends State<FlutterSwitch>
         (widget?.inactiveText != null) ? widget.inactiveText : "Off",
         style: TextStyle(
           color: widget.inactiveTextColor,
-          fontWeight: FontWeight.w900,
+          fontWeight: widget.inactiveFontWeight,
           fontSize: widget.valueFontSize,
         ),
       );
