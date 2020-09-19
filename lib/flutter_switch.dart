@@ -56,6 +56,12 @@ class _FlutterSwitchState extends State<FlutterSwitch>
       CurvedAnimation(parent: _animationController, curve: Curves.linear),
     );
   }
+  
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
