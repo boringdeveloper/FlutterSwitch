@@ -15,7 +15,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  flutter_switch: ^0.1.1
+  flutter_switch: ^0.1.2
 ```
 
 You can install packages from the command line with Flutter:
@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
             height: 55.0,
             valueFontSize: 25.0,
             toggleSize: 45.0,
-            value: status5,
+            value: status,
             borderRadius: 30.0,
             padding: 8.0,
             showOnOff: true,

@@ -12,3 +12,7 @@
 ## [0.1.1] - June 28, 2020
 
 * Custom switch active and inactive text
+
+## [0.1.2] - September 21, 2020
+
+* Dispose of animation controller
