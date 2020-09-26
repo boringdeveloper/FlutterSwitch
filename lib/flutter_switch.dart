@@ -56,11 +56,20 @@ class _FlutterSwitchState extends State<FlutterSwitch>
       CurvedAnimation(parent: _animationController, curve: Curves.linear),
     );
   }
-  
+
   @override
   void dispose() {
     _animationController.dispose();
     super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(FlutterSwitch oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.value)
+      _animationController.forward();
+    else
+      _animationController.reverse();
   }
 
   @override
@@ -70,14 +79,12 @@ class _FlutterSwitchState extends State<FlutterSwitch>
       builder: (context, child) {
         return GestureDetector(
           onTap: () {
-            if (_animationController.isCompleted) {
+            if (widget.value)
               _animationController.reverse();
-            } else {
+            else
               _animationController.forward();
-            }
-            widget.value == false
-                ? widget.onToggle(true)
-                : widget.onToggle(false);
+
+            widget.onToggle(!widget.value);
           },
           child: Container(
             width: widget.width,
