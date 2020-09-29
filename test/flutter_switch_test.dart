@@ -4,10 +4,11 @@ import 'package:flutter_test/flutter_test.dart';
 import '../lib/flutter_switch.dart';
 
 void main() {
-  final alignToggleIndicatorFinder = find.byWidgetPredicate(
-      (widget) => widget is Align && widget.child is Container);
-
   group("FlutterSwitch", () {
+
+    final alignToggleIndicatorFinder = find.byWidgetPredicate(
+            (widget) => widget is Align && widget.child is Container);
+
     testWidgets(
       "displays the toggle indicator on the right if the given value is true",
       (WidgetTester tester) async {
