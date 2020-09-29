@@ -192,6 +192,9 @@ class _FlutterSwitchState extends State<FlutterSwitch>
   @override
   void didUpdateWidget(FlutterSwitch oldWidget) {
     super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.value == widget.value) return;
+
     if (widget.value)
       _animationController.forward();
     else
