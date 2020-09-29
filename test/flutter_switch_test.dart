@@ -47,7 +47,7 @@ void main() {
           ),
         );
 
-        await tester.tap(find.byType(GestureDetector));
+        await tester.tap(find.byType(FlutterSwitch));
         await tester.pump();
 
         final align = tester.widget<Align>(alignToggleIndicatorFinder);
@@ -65,7 +65,7 @@ void main() {
           ),
         );
 
-        await tester.tap(find.byType(GestureDetector));
+        await tester.tap(find.byType(FlutterSwitch));
         await tester.pumpAndSettle();
 
         final align = tester.widget<Align>(alignToggleIndicatorFinder);
