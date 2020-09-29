@@ -5,9 +5,8 @@ import '../lib/flutter_switch.dart';
 
 void main() {
   group("FlutterSwitch", () {
-
     final alignToggleIndicatorFinder = find.byWidgetPredicate(
-            (widget) => widget is Align && widget.child is Container);
+        (widget) => widget is Align && widget.child is Container);
 
     testWidgets(
       "displays the toggle indicator on the right if the given value is true",
