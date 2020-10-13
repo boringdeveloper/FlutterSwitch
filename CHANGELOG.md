@@ -16,3 +16,9 @@
 ## [0.1.2] - September 21, 2020
 
 * Dispose of animation controller
+
+## [0.1.3] - September 26, 2020
+
+* Handling of state was fixed
+* Added comments for each property
+* Added active and inactive font weight property
