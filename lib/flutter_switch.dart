@@ -173,11 +173,12 @@ class _FlutterSwitchState extends State<FlutterSwitch>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
+      value: widget.value ? 1.0 : 0.0,
       duration: Duration(milliseconds: 60),
     );
     _toggleAnimation = AlignmentTween(
-      begin: widget.value ? Alignment.centerRight : Alignment.centerLeft,
-      end: widget.value ? Alignment.centerLeft : Alignment.centerRight,
+      begin: Alignment.centerLeft,
+      end: Alignment.centerRight,
     ).animate(
       CurvedAnimation(parent: _animationController, curve: Curves.linear),
     );
@@ -192,6 +193,9 @@ class _FlutterSwitchState extends State<FlutterSwitch>
   @override
   void didUpdateWidget(FlutterSwitch oldWidget) {
     super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.value == widget.value) return;
+
     if (widget.value)
       _animationController.forward();
     else
