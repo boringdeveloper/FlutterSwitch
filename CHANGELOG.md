@@ -22,3 +22,7 @@
 * Handling of state was fixed
 * Added comments for each property
 * Added active and inactive font weight property
+
+## [0.1.4] - October 25, 2020
+
+* Handling of state when no changes was made
