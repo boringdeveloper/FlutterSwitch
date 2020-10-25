@@ -31,6 +31,7 @@ class FlutterSwitch extends StatefulWidget {
     this.inactiveText,
     this.activeTextFontWeight,
     this.inactiveTextFontWeight,
+    this.animationDuration = const Duration(milliseconds: 60),
   }) : super(key: key);
 
   /// Determines if the switch is on or off.
@@ -159,12 +160,16 @@ class FlutterSwitch extends StatefulWidget {
   /// Defaults to the value of 4.0.
   final double padding;
 
+  /// The duration of the switch.
+  ///
+  /// Defaults to the value of 60ms.
+  final Duration animationDuration;
+
   @override
   _FlutterSwitchState createState() => _FlutterSwitchState();
 }
 
-class _FlutterSwitchState extends State<FlutterSwitch>
-    with SingleTickerProviderStateMixin {
+class _FlutterSwitchState extends State<FlutterSwitch> with SingleTickerProviderStateMixin {
   Animation _toggleAnimation;
   AnimationController _animationController;
 
@@ -174,7 +179,7 @@ class _FlutterSwitchState extends State<FlutterSwitch>
     _animationController = AnimationController(
       vsync: this,
       value: widget.value ? 1.0 : 0.0,
-      duration: Duration(milliseconds: 60),
+      duration: widget.animationDuration,
     );
     _toggleAnimation = AlignmentTween(
       begin: Alignment.centerLeft,
@@ -222,9 +227,7 @@ class _FlutterSwitchState extends State<FlutterSwitch>
             padding: EdgeInsets.all(widget.padding),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(widget.borderRadius),
-              color: _toggleAnimation.value == Alignment.centerLeft
-                  ? widget.inactiveColor
-                  : widget.activeColor,
+              color: _toggleAnimation.value == Alignment.centerLeft ? widget.inactiveColor : widget.activeColor,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -265,13 +268,8 @@ class _FlutterSwitchState extends State<FlutterSwitch>
     );
   }
 
-  FontWeight get _activeTextFontWeight => widget.activeTextFontWeight != null
-      ? widget.activeTextFontWeight
-      : FontWeight.w900;
-  FontWeight get _inactiveTextFontWeight =>
-      widget.inactiveTextFontWeight != null
-          ? widget.inactiveTextFontWeight
-          : FontWeight.w900;
+  FontWeight get _activeTextFontWeight => widget.activeTextFontWeight != null ? widget.activeTextFontWeight : FontWeight.w900;
+  FontWeight get _inactiveTextFontWeight => widget.inactiveTextFontWeight != null ? widget.inactiveTextFontWeight : FontWeight.w900;
 
   Widget get _activeText {
     if (widget.showOnOff) {
