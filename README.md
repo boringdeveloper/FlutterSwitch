@@ -1,5 +1,7 @@
 # flutter_switch
 
+[![pub package](https://img.shields.io/pub/v/flutter_switch.svg)](https://pub.dev/packages/flutter_switch) [![pub points](https://badges.bar/flutter_switch/pub%20points)](https://pub.dev/packages/flutter_switch/score) [![popularity](https://badges.bar/flutter_switch/popularity)](https://pub.dev/packages/flutter_switch/score) [![likes](https://badges.bar/flutter_switch/likes)](https://pub.dev/packages/flutter_switch/score)
+
 An easy to implement custom switch created for Flutter. You can have a customized height and width, border radius, colors, toggle size and choice to display an 'On' and 'Off' text.
 
  [![GitHub followers](https://img.shields.io/github/followers/boringdeveloper.svg?style=social&label=Follow)](https://github.com/boringdeveloper)  <a href="https://www.linkedin.com/in/nichole-john-talban-romero/"><img src="https://image.flaticon.com/icons/svg/174/174857.svg" width="20"></a>
