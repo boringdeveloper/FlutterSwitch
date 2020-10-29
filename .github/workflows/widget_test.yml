@@ -16,17 +16,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    # Include the java action
     - uses: actions/setup-java@v1
       with:
         java-version: '12.x'
-    # Include the flutter action
     - uses: subosito/flutter-action@v1
       with:
-        channel: 'stable' 
-    - name: Install dependencies
-    # Get flutter packages
-      run: flutter pub get
-    # Run widget tests
-    - name: Run tests
-      run: flutter test
+        flutter-version: '1.9.1+hotfix.6'
+    - run: flutter pub get
+    - run: flutter test
