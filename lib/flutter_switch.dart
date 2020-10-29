@@ -210,9 +210,9 @@ class _FlutterSwitchState extends State<FlutterSwitch>
         return GestureDetector(
           onTap: () {
             if (widget.value)
-              _animationController.reverse();
-            else
               _animationController.forward();
+            else
+              _animationController.reverse();
 
             widget.onToggle(!widget.value);
           },
