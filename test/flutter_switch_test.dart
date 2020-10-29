@@ -12,8 +12,8 @@ void main() {
       "displays the toggle indicator on the right if the given value is true",
       (WidgetTester tester) async {
         await tester.pumpWidget(
-          _FlutterSwitchTestbed(
-            value: true,
+          _FlutterSwitchTest(
+            status: true,
           ),
         );
 
@@ -27,8 +27,8 @@ void main() {
       "displays the toggle indicator on the left if the given value is false",
       (WidgetTester tester) async {
         await tester.pumpWidget(
-          _FlutterSwitchTestbed(
-            value: false,
+          _FlutterSwitchTest(
+            status: false,
           ),
         );
 
@@ -39,29 +39,29 @@ void main() {
     );
 
     testWidgets(
-      "changes the toggle indicator alignment to the right on tap when the given value is false",
+      "changes the toggle indicator alignment to the right on tap when the initial value is false",
       (WidgetTester tester) async {
         await tester.pumpWidget(
-          _FlutterSwitchTestbed(
-            value: false,
+          new _FlutterSwitchTest(
+            status: false,
           ),
         );
 
         await tester.tap(find.byType(FlutterSwitch));
-        await tester.pump();
+        await tester.pumpAndSettle();
 
         final align = tester.widget<Align>(alignToggleIndicatorFinder);
 
-        expect(align.alignment, equals(Alignment.centerLeft));
+        expect(align.alignment, equals(Alignment.centerRight));
       },
     );
 
     testWidgets(
-      "changes the toggle indicator alignment to the left on tap when the given value is true",
+      "changes the toggle indicator alignment to the left on tap when the initial value is true",
       (WidgetTester tester) async {
         await tester.pumpWidget(
-          _FlutterSwitchTestbed(
-            value: true,
+          _FlutterSwitchTest(
+            status: true,
           ),
         );
 
@@ -77,32 +77,43 @@ void main() {
 }
 
 /// A testbed class needed to test the [FlutterSwitch] widget.
-class _FlutterSwitchTestbed extends StatelessWidget {
-  /// A callback that is called when the switch is toggled.
-  final ValueChanged<bool> onToggle;
+class _FlutterSwitchTest extends StatefulWidget {
+  final status;
 
-  /// An initial value of the switch.
-  final bool value;
-
-  /// Creates a new instance of this testbed.
-  const _FlutterSwitchTestbed({
+  _FlutterSwitchTest({
     Key key,
-    this.onToggle = _defaultOnToggle,
-    this.value,
+    this.status,
   }) : super(key: key);
+
+  @override
+  __FlutterSwitchTestState createState() => __FlutterSwitchTestState();
+}
+
+class __FlutterSwitchTestState extends State<_FlutterSwitchTest> {
+  bool _status = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    setState(() {
+      _status = widget.status;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         body: FlutterSwitch(
-          value: value,
-          onToggle: onToggle,
+          value: _status,
+          onToggle: (val) {
+            setState(() {
+              _status = val;
+            });
+          },
         ),
       ),
     );
   }
-
-  /// A default on toggle callback of the switch.
-  static void _defaultOnToggle(bool value) {}
 }
