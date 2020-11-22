@@ -1,6 +1,6 @@
 # flutter_switch
 
-[![pub package](https://img.shields.io/pub/v/flutter_switch.svg)](https://pub.dev/packages/flutter_switch) [![pub points](https://badges.bar/flutter_switch/pub%20points)](https://pub.dev/packages/flutter_switch/score) [![popularity](https://badges.bar/flutter_switch/popularity)](https://pub.dev/packages/flutter_switch/score) [![likes](https://badges.bar/flutter_switch/likes)](https://pub.dev/packages/flutter_switch/score)
+[![pub package](https://img.shields.io/pub/v/flutter_switch.svg)](https://pub.dev/packages/flutter_switch) [![pub points](https://badges.bar/flutter_switch/pub%20points)](https://pub.dev/packages/flutter_switch/score) [![popularity](https://badges.bar/flutter_switch/popularity)](https://pub.dev/packages/flutter_switch/score) [![likes](https://badges.bar/flutter_switch/likes)](https://pub.dev/packages/flutter_switch/score) <a href="https://github.com/boringdeveloper/FlutterSwitch/actions"><img src="https://img.shields.io/github/workflow/status/boringdeveloper/FlutterSwitch/Widget%20Test?label=build"></a>
 
 An easy to implement custom switch created for Flutter. You can have a customized height and width, border radius, colors, toggle size and choice to display an 'On' and 'Off' text.
 
