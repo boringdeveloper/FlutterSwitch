@@ -201,7 +201,7 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 FlutterSwitch(
-                  width: 125.0,
+                  width: 100.0,
                   height: 55.0,
                   valueFontSize: 25.0,
                   toggleSize: 45.0,
