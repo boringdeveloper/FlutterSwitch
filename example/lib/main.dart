@@ -27,6 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool status4 = false;
   bool status5 = false;
   bool status6 = false;
+  bool status7 = true;
 
   @override
   Widget build(BuildContext context) {
@@ -192,7 +193,45 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ],
-            )
+            ),
+            SizedBox(height: 20.0),
+            Text("Toon-like feel by using Borders"),
+            SizedBox(height: 10.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                FlutterSwitch(
+                  width: 125.0,
+                  height: 55.0,
+                  valueFontSize: 25.0,
+                  toggleSize: 45.0,
+                  value: status7,
+                  borderRadius: 30.0,
+                  padding: 2.0,
+                  switchBorder: Border.all(
+                    color: Color.fromRGBO(2, 107, 206, 1),
+                    width: 6.0,
+                  ),
+                  toggleBorder: Border.all(
+                    color: Color.fromRGBO(2, 107, 206, 1),
+                    width: 5.0,
+                  ),
+                  activeColor: Color.fromRGBO(51, 226, 255, 1),
+                  inactiveColor: Colors.black38,
+                  onToggle: (val) {
+                    setState(() {
+                      status7 = val;
+                    });
+                  },
+                ),
+                Container(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    "Value: $status7",
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),

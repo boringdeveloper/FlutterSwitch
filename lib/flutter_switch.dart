@@ -31,6 +31,8 @@ class FlutterSwitch extends StatefulWidget {
     this.inactiveText,
     this.activeTextFontWeight,
     this.inactiveTextFontWeight,
+    this.switchBorder,
+    this.toggleBorder,
   }) : super(key: key);
 
   /// Determines if the switch is on or off.
@@ -159,6 +161,26 @@ class FlutterSwitch extends StatefulWidget {
   /// Defaults to the value of 4.0.
   final double padding;
 
+  /// Determines the border of the switch.
+  ///
+  /// An example usage would be...
+  /// ```dart
+  /// switchBorder: Border.all(color: Color.fromRGBO(2, 107, 206, 1), width: 6.0,)
+  /// ```
+  ///
+  /// This is an optional property
+  final BoxBorder switchBorder;
+
+  /// Determines the border of the toggle.
+  ///
+  /// An example usage would be...
+  /// ```dart
+  /// toggleBorder: Border.all(color: Color.fromRGBO(2, 107, 206, 1), width: 4.0,)
+  /// ```
+  ///
+  /// This is an optional property
+  final BoxBorder toggleBorder;
+
   @override
   _FlutterSwitchState createState() => _FlutterSwitchState();
 }
@@ -225,6 +247,7 @@ class _FlutterSwitchState extends State<FlutterSwitch>
               color: _toggleAnimation.value == Alignment.centerLeft
                   ? widget.inactiveColor
                   : widget.activeColor,
+              border: widget.switchBorder ?? null,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -245,6 +268,7 @@ class _FlutterSwitchState extends State<FlutterSwitch>
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: widget.toggleColor,
+                      border: widget.toggleBorder ?? null,
                     ),
                   ),
                 ),
