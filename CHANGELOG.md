@@ -26,3 +26,7 @@
 ## [0.1.4] - October 25, 2020
 
 * Handling of state when no changes was made
+
+## [0.1.5] - October 25, 2020
+
+* Fix an issue where the conditional statement is ignored in the first tap of the switch
