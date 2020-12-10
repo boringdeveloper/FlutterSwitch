@@ -22,13 +22,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   bool status1 = false;
-  bool status2 = false;
+  bool status2 = true;
   bool status3 = false;
   bool status4 = false;
   bool status5 = false;
   bool status6 = false;
-  bool status7 = true;
-  bool status8 = false;
+  bool status7 = false;
 
   @override
   Widget build(BuildContext context) {
@@ -64,16 +63,29 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
               SizedBox(height: 20.0),
-              Text("Custom Colors"),
+              Text("Custom Colors and Borders"),
               SizedBox(height: 10.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   FlutterSwitch(
-                    activeColor: Colors.red,
-                    inactiveColor: Colors.red[200],
-                    toggleColor: Colors.blueGrey[700],
+                    width: 100.0,
+                    height: 55.0,
+                    toggleSize: 45.0,
                     value: status2,
+                    borderRadius: 30.0,
+                    padding: 2.0,
+                    toggleColor: Color.fromRGBO(225, 225, 225, 1),
+                    switchBorder: Border.all(
+                      color: Color.fromRGBO(2, 107, 206, 1),
+                      width: 6.0,
+                    ),
+                    toggleBorder: Border.all(
+                      color: Color.fromRGBO(2, 107, 206, 1),
+                      width: 5.0,
+                    ),
+                    activeColor: Color.fromRGBO(51, 226, 255, 1),
+                    inactiveColor: Colors.black38,
                     onToggle: (val) {
                       setState(() {
                         status2 = val;
@@ -197,44 +209,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
               SizedBox(height: 20.0),
-              Text("Toon-like feel by using Borders"),
-              SizedBox(height: 10.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  FlutterSwitch(
-                    width: 100.0,
-                    height: 55.0,
-                    toggleSize: 45.0,
-                    value: status7,
-                    borderRadius: 30.0,
-                    padding: 2.0,
-                    toggleColor: Color.fromRGBO(225, 225, 225, 1),
-                    switchBorder: Border.all(
-                      color: Color.fromRGBO(2, 107, 206, 1),
-                      width: 6.0,
-                    ),
-                    toggleBorder: Border.all(
-                      color: Color.fromRGBO(2, 107, 206, 1),
-                      width: 5.0,
-                    ),
-                    activeColor: Color.fromRGBO(51, 226, 255, 1),
-                    inactiveColor: Colors.black38,
-                    onToggle: (val) {
-                      setState(() {
-                        status7 = val;
-                      });
-                    },
-                  ),
-                  Container(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      "Value: $status7",
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 20.0),
               Text("Icon in toggle"),
               Text(
                 "Inspired by the colors from Github Dark Mode switch",
@@ -252,7 +226,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     width: 100.0,
                     height: 55.0,
                     toggleSize: 45.0,
-                    value: status8,
+                    value: status7,
                     borderRadius: 30.0,
                     padding: 2.0,
                     activeToggleColor: Color(0xFF6E40C9),
@@ -277,14 +251,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     onToggle: (val) {
                       setState(() {
-                        status8 = val;
+                        status7 = val;
                       });
                     },
                   ),
                   Container(
                     alignment: Alignment.centerRight,
                     child: Text(
-                      "Value: $status8",
+                      "Value: $status7",
                     ),
                   ),
                 ],

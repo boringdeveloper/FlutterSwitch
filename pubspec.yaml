@@ -1,5 +1,5 @@
 name: flutter_switch
-description: An easy to implement custom switch that can have a customized height and width, border radius, colors, toggle size and choice to display an 'On' and 'Off' text.
+description: An easy to implement custom switch that can have a customized height and width, borders for the switch and toggle, border radius of the switch, colors, toggle size, a choice to display an 'On' and 'Off' text and able to add an icon inside the toggle.
 version: 0.1.6-beta.1
 homepage: https://github.com/boringdeveloper/FlutterSwitch
 
