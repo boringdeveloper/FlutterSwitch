@@ -8,7 +8,9 @@ An easy to implement custom switch created for Flutter. Give it a custom height 
 
 ## Demo
 
- ![flutter_switch](https://media.giphy.com/media/Q5FEklNzESXNbHwZ40/giphy.gif) 
+ ![flutter_switch](https://media0.giphy.com/media/zQ7AwA3SiAzqiFCW1o/giphy.gif) 
+ 
+ Video version: https://youtu.be/JqJnxjE6Efc
 
 
 ## Use this package as a library
