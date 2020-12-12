@@ -19,7 +19,9 @@ class FlutterSwitch extends StatefulWidget {
     this.inactiveColor = Colors.grey,
     this.activeTextColor = Colors.white70,
     this.inactiveTextColor = Colors.white70,
-    this.toggleColor = Colors.white,
+    this.toggleColor,
+    this.activeToggleColor,
+    this.inactiveToggleColor,
     this.width = 70.0,
     this.height = 35.0,
     this.toggleSize = 25.0,
@@ -31,7 +33,30 @@ class FlutterSwitch extends StatefulWidget {
     this.inactiveText,
     this.activeTextFontWeight,
     this.inactiveTextFontWeight,
-  }) : super(key: key);
+    this.switchBorder,
+    this.activeSwitchBorder,
+    this.inactiveSwitchBorder,
+    this.toggleBorder,
+    this.activeToggleBorder,
+    this.inactiveToggleBorder,
+    this.activeIcon,
+    this.inactiveIcon,
+  })  : assert(
+            (toggleColor == null || activeToggleColor == null) &&
+                (toggleColor == null || inactiveToggleColor == null),
+            'Cannot provide toggleColor when an activeToggleColor or inactiveToggleColor was given\n'
+            'To give the toggle a color, use "activeToggleColor: color" and "inactiveToggleColor: color".'),
+        assert(
+            (switchBorder == null || activeSwitchBorder == null) &&
+                (switchBorder == null || inactiveSwitchBorder == null),
+            'Cannot provide switchBorder when an activeSwitchBorder or inactiveSwitchBorder was given\n'
+            'To give the switch a border, use "activeSwitchBorder: border" or "inactiveSwitchBorder: border".'),
+        assert(
+            (toggleBorder == null || activeToggleBorder == null) &&
+                (toggleBorder == null || inactiveToggleBorder == null),
+            'Cannot provide toggleBorder when an activeToggleBorder or inactiveToggleBorder was given\n'
+            'To give the toggle a border, use "activeToggleBorder: color" or "inactiveToggleBorder: color".'),
+        super(key: key);
 
   /// Determines if the switch is on or off.
   ///
@@ -126,7 +151,21 @@ class FlutterSwitch extends StatefulWidget {
   /// The color to use on the toggle of the switch.
   ///
   /// Defaults to [Colors.white].
+  ///
+  /// If the [activeSwitchBorder] or [inactiveSwitchBorder] is used, this property must be null.
   final Color toggleColor;
+
+  /// The color to use on the toggle of the switch when the given value is true.
+  ///
+  /// If [inactiveToggleColor] is used and this property is null. the value of
+  /// [Colors.white] will be used.
+  final Color activeToggleColor;
+
+  /// The color to use on the toggle of the switch when the given value is false.
+  ///
+  /// If [activeToggleColor] is used and this property is null. the value of
+  /// [Colors.white] will be used.
+  final Color inactiveToggleColor;
 
   /// The given width of the switch.
   ///
@@ -158,6 +197,50 @@ class FlutterSwitch extends StatefulWidget {
   ///
   /// Defaults to the value of 4.0.
   final double padding;
+
+  /// The border of the switch.
+  ///
+  /// This property will give a uniform border to both states of the toggle
+  ///
+  /// If the [activeSwitchBorder] or [inactiveSwitchBorder] is used, this property must be null.
+  final BoxBorder switchBorder;
+
+  /// The border of the switch when the given value is true.
+  ///
+  /// This property is optional.
+  final BoxBorder activeSwitchBorder;
+
+  /// The border of the switch when the given value is false.
+  ///
+  /// This property is optional.
+  final BoxBorder inactiveSwitchBorder;
+
+  /// The border of the toggle.
+  ///
+  /// This property will give a uniform border to both states of the toggle
+  ///
+  /// If the [activeToggleBorder] or [inactiveToggleBorder] is used, this property must be null.
+  final BoxBorder toggleBorder;
+
+  /// The border of the toggle when the given value is true.
+  ///
+  /// This property is optional.
+  final BoxBorder activeToggleBorder;
+
+  /// The border of the toggle when the given value is false.
+  ///
+  /// This property is optional.
+  final BoxBorder inactiveToggleBorder;
+
+  /// The icon inside the toggle when the given value is true.
+  ///
+  /// This property is optional.
+  final Icon activeIcon;
+
+  /// The icon inside the toggle when the given value is false.
+  ///
+  /// This property is optional.
+  final Icon inactiveIcon;
 
   @override
   _FlutterSwitchState createState() => _FlutterSwitchState();
@@ -204,6 +287,26 @@ class _FlutterSwitchState extends State<FlutterSwitch>
 
   @override
   Widget build(BuildContext context) {
+    Color _toggleColor = Colors.white;
+    Color _switchColor = Colors.white;
+    Border _switchBorder;
+    Border _toggleBorder;
+    Widget _icon;
+
+    if (widget.value) {
+      _toggleColor = widget.activeToggleColor ?? widget.toggleColor;
+      _switchColor = widget.activeColor;
+      _switchBorder = widget.activeSwitchBorder ?? widget.switchBorder;
+      _toggleBorder = widget.activeToggleBorder ?? widget.toggleBorder;
+      _icon = widget.activeIcon;
+    } else {
+      _toggleColor = widget.inactiveToggleColor ?? widget.toggleColor;
+      _switchColor = widget.inactiveColor;
+      _switchBorder = widget.inactiveSwitchBorder ?? widget.switchBorder;
+      _toggleBorder = widget.inactiveToggleBorder ?? widget.toggleBorder;
+      _icon = widget.inactiveIcon;
+    }
+
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) {
@@ -222,9 +325,8 @@ class _FlutterSwitchState extends State<FlutterSwitch>
             padding: EdgeInsets.all(widget.padding),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(widget.borderRadius),
-              color: _toggleAnimation.value == Alignment.centerLeft
-                  ? widget.inactiveColor
-                  : widget.activeColor,
+              color: _switchColor,
+              border: _switchBorder,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -244,8 +346,10 @@ class _FlutterSwitchState extends State<FlutterSwitch>
                     height: widget.toggleSize,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: widget.toggleColor,
+                      color: _toggleColor ?? Colors.white,
+                      border: _toggleBorder,
                     ),
+                    child: _icon,
                   ),
                 ),
                 _toggleAnimation.value == Alignment.centerLeft

@@ -73,16 +73,160 @@ void main() {
         expect(align.alignment, equals(Alignment.centerLeft));
       },
     );
+
+    testWidgets(
+      "throws an assertion error when both toggleColor and activeToggleColor property is not null",
+      (WidgetTester tester) async {
+        await tester.pumpWidget(
+          _FlutterSwitchTest(
+            status: false,
+            toggleColor: Colors.white,
+            activeToggleColor: Colors.blue,
+          ),
+        );
+
+        final assertion = tester.takeException();
+
+        expect(assertion, isAssertionError);
+      },
+    );
+
+    testWidgets(
+      "throws an assertion error when both toggleColor and inactiveToggleColor property is not null",
+      (WidgetTester tester) async {
+        await tester.pumpWidget(
+          _FlutterSwitchTest(
+            status: false,
+            toggleColor: Colors.blue,
+            inactiveToggleColor: Colors.blueGrey,
+          ),
+        );
+
+        final assertion = tester.takeException();
+
+        expect(assertion, isAssertionError);
+      },
+    );
+
+    testWidgets(
+      "throws an assertion error when both switchBorder and activeSwitchBorder property is not null",
+      (WidgetTester tester) async {
+        await tester.pumpWidget(
+          _FlutterSwitchTest(
+            status: false,
+            switchBorder: Border.all(
+              color: Colors.black,
+              width: 6.0,
+            ),
+            activeSwitchBorder: Border.all(
+              color: Colors.blue,
+              width: 6.0,
+            ),
+          ),
+        );
+
+        final assertion = tester.takeException();
+
+        expect(assertion, isAssertionError);
+      },
+    );
+
+    testWidgets(
+      "throws an assertion error when both switchBorder and inactiveSwitchBorder property is not null",
+      (WidgetTester tester) async {
+        await tester.pumpWidget(
+          _FlutterSwitchTest(
+            status: false,
+            switchBorder: Border.all(
+              color: Colors.black,
+              width: 6.0,
+            ),
+            inactiveSwitchBorder: Border.all(
+              color: Colors.blueGrey,
+              width: 6.0,
+            ),
+          ),
+        );
+
+        final assertion = tester.takeException();
+
+        expect(assertion, isAssertionError);
+      },
+    );
+
+    testWidgets(
+      "throws an assertion error when both toggleBorder and activeToggleBorder property is not null",
+      (WidgetTester tester) async {
+        await tester.pumpWidget(
+          _FlutterSwitchTest(
+            status: false,
+            toggleBorder: Border.all(
+              color: Colors.black,
+              width: 6.0,
+            ),
+            activeToggleBorder: Border.all(
+              color: Colors.blue,
+              width: 6.0,
+            ),
+          ),
+        );
+
+        final assertion = tester.takeException();
+
+        expect(assertion, isAssertionError);
+      },
+    );
+
+    testWidgets(
+      "throws an assertion error when both toggleBorder and inactiveToggleBorder property is not null",
+      (WidgetTester tester) async {
+        await tester.pumpWidget(
+          _FlutterSwitchTest(
+            status: false,
+            toggleBorder: Border.all(
+              color: Colors.black,
+              width: 6.0,
+            ),
+            inactiveToggleBorder: Border.all(
+              color: Colors.blueGrey,
+              width: 6.0,
+            ),
+          ),
+        );
+
+        final assertion = tester.takeException();
+
+        expect(assertion, isAssertionError);
+      },
+    );
   });
 }
 
 /// A testbed class needed to test the [FlutterSwitch] widget.
 class _FlutterSwitchTest extends StatefulWidget {
-  final status;
+  final bool status;
+  final Color toggleColor;
+  final Color activeToggleColor;
+  final Color inactiveToggleColor;
+  final Border switchBorder;
+  final Border activeSwitchBorder;
+  final Border inactiveSwitchBorder;
+  final Border toggleBorder;
+  final Border activeToggleBorder;
+  final Border inactiveToggleBorder;
 
   _FlutterSwitchTest({
     Key key,
     this.status,
+    this.toggleColor,
+    this.activeToggleColor,
+    this.inactiveToggleColor,
+    this.switchBorder,
+    this.activeSwitchBorder,
+    this.inactiveSwitchBorder,
+    this.toggleBorder,
+    this.activeToggleBorder,
+    this.inactiveToggleBorder,
   }) : super(key: key);
 
   @override
@@ -107,6 +251,15 @@ class __FlutterSwitchTestState extends State<_FlutterSwitchTest> {
       home: Scaffold(
         body: FlutterSwitch(
           value: _status,
+          toggleColor: widget.toggleColor,
+          activeToggleColor: widget.activeToggleColor,
+          inactiveToggleColor: widget.inactiveToggleColor,
+          switchBorder: widget.switchBorder,
+          activeSwitchBorder: widget.activeSwitchBorder,
+          inactiveSwitchBorder: widget.inactiveSwitchBorder,
+          toggleBorder: widget.toggleBorder,
+          activeToggleBorder: widget.activeToggleBorder,
+          inactiveToggleBorder: widget.inactiveToggleBorder,
           onToggle: (val) {
             setState(() {
               _status = val;

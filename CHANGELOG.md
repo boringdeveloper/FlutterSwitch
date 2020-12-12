@@ -26,3 +26,17 @@
 ## [0.1.4] - October 25, 2020
 
 * Handling of state when no changes was made
+
+## [0.1.5] - October 25, 2020
+
+* Fix an issue where the conditional statement is ignored in the first tap of the switch
+
+## [0.1.6-beta] - December 10, 2020
+
+* Added switch and toggle border property. Now you can try to give your switch a toon-like feel
+
+## [0.1.6-beta.1] - December 10, 2020
+
+* Update Readme
+* Added toggle icon property
+* Added sample usage of custom border and icons in /example
