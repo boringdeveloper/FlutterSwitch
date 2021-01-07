@@ -235,12 +235,12 @@ class FlutterSwitch extends StatefulWidget {
   /// The icon inside the toggle when the given value is true.
   ///
   /// This property is optional.
-  final Icon activeIcon;
+  final Widget activeIcon;
 
   /// The icon inside the toggle when the given value is false.
   ///
   /// This property is optional.
-  final Icon inactiveIcon;
+  final Widget inactiveIcon;
 
   @override
   _FlutterSwitchState createState() => _FlutterSwitchState();
