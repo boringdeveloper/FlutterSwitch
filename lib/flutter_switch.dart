@@ -310,58 +310,60 @@ class _FlutterSwitchState extends State<FlutterSwitch>
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) {
-        return GestureDetector(
-          onTap: () {
-            if (widget.value)
-              _animationController.forward();
-            else
-              _animationController.reverse();
+        return Align(
+          child: GestureDetector(
+            onTap: () {
+              if (widget.value)
+                _animationController.forward();
+              else
+                _animationController.reverse();
 
-            widget.onToggle(!widget.value);
-          },
-          child: Container(
-            width: widget.width,
-            height: widget.height,
-            padding: EdgeInsets.all(widget.padding),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(widget.borderRadius),
-              color: _switchColor,
-              border: _switchBorder,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                _toggleAnimation.value == Alignment.centerRight
-                    ? Expanded(
-                        child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 4.0),
-                          child: _activeText,
-                        ),
-                      )
-                    : Container(),
-                Align(
-                  alignment: _toggleAnimation.value,
-                  child: Container(
-                    width: widget.toggleSize,
-                    height: widget.toggleSize,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: _toggleColor ?? Colors.white,
-                      border: _toggleBorder,
+              widget.onToggle(!widget.value);
+            },
+            child: Container(
+              width: widget.width,
+              height: widget.height,
+              padding: EdgeInsets.all(widget.padding),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(widget.borderRadius),
+                color: _switchColor,
+                border: _switchBorder,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  _toggleAnimation.value == Alignment.centerRight
+                      ? Expanded(
+                          child: Container(
+                            padding: EdgeInsets.symmetric(horizontal: 4.0),
+                            child: _activeText,
+                          ),
+                        )
+                      : Container(),
+                  Align(
+                    alignment: _toggleAnimation.value,
+                    child: Container(
+                      width: widget.toggleSize,
+                      height: widget.toggleSize,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: _toggleColor ?? Colors.white,
+                        border: _toggleBorder,
+                      ),
+                      child: _icon,
                     ),
-                    child: _icon,
                   ),
-                ),
-                _toggleAnimation.value == Alignment.centerLeft
-                    ? Expanded(
-                        child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 4.0),
-                          alignment: Alignment.centerRight,
-                          child: _inactiveText,
-                        ),
-                      )
-                    : Container(),
-              ],
+                  _toggleAnimation.value == Alignment.centerLeft
+                      ? Expanded(
+                          child: Container(
+                            padding: EdgeInsets.symmetric(horizontal: 4.0),
+                            alignment: Alignment.centerRight,
+                            child: _inactiveText,
+                          ),
+                        )
+                      : Container(),
+                ],
+              ),
             ),
           ),
         );
