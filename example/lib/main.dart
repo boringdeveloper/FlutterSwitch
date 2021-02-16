@@ -28,6 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool status5 = false;
   bool status6 = false;
   bool status7 = false;
+  bool isSwitchOn = false;
 
   Color _textColor = Colors.black;
   Color _appBarColor = Color.fromRGBO(36, 41, 46, 1);
@@ -50,6 +51,16 @@ class _MyHomePageState extends State<MyHomePage> {
             "FlutterSwitch Demo",
             style: TextStyle(color: Colors.white),
           ),
+          actions: [
+            FlutterSwitch(
+              value: isSwitchOn,
+              onToggle: (value) {
+                setState(() {
+                  isSwitchOn = value;
+                });
+              },
+            ),
+          ],
         ),
         body: SingleChildScrollView(
           child: Padding(
