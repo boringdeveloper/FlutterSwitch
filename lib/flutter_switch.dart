@@ -310,16 +310,16 @@ class _FlutterSwitchState extends State<FlutterSwitch>
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) {
-        return GestureDetector(
-          onTap: () {
-            if (widget.value)
-              _animationController.forward();
-            else
-              _animationController.reverse();
+        return Align(
+          child: GestureDetector(
+            onTap: () {
+              if (widget.value)
+                _animationController.forward();
+              else
+                _animationController.reverse();
 
-            widget.onToggle(!widget.value);
-          },
-          child: Align(
+              widget.onToggle(!widget.value);
+            },
             child: Container(
               width: widget.width,
               height: widget.height,

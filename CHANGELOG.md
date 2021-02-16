@@ -37,3 +37,7 @@
 * Update Readme
 * Added toggle icon property
 * Added sample usage of custom border and icons in /example
+
+## [0.2.1] - February 16, 2021
+
+* Handling the display of the switch in the AppBar
