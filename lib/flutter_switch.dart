@@ -41,6 +41,8 @@ class FlutterSwitch extends StatefulWidget {
     this.inactiveToggleBorder,
     this.activeIcon,
     this.inactiveIcon,
+    this.duration,
+    this.curve,
   })  : assert(
             (toggleColor == null || activeToggleColor == null) &&
                 (toggleColor == null || inactiveToggleColor == null),
@@ -242,6 +244,15 @@ class FlutterSwitch extends StatefulWidget {
   /// This property is optional.
   final Icon inactiveIcon;
 
+  /// The duration in milliseconds to change the state of the switch
+  ///
+  final Duration duration;
+
+  /// An parametric animation easing curve, i.e. a mapping of the unit interval to the unit interval.
+  ///
+  /// https://api.flutter.dev/flutter/animation/Curves-class.html
+  final Curve curve;
+
   @override
   _FlutterSwitchState createState() => _FlutterSwitchState();
 }
@@ -257,13 +268,16 @@ class _FlutterSwitchState extends State<FlutterSwitch>
     _animationController = AnimationController(
       vsync: this,
       value: widget.value ? 1.0 : 0.0,
-      duration: Duration(milliseconds: 60),
+      duration: widget.duration ?? Duration(milliseconds: 60),
     );
     _toggleAnimation = AlignmentTween(
       begin: Alignment.centerLeft,
       end: Alignment.centerRight,
     ).animate(
-      CurvedAnimation(parent: _animationController, curve: Curves.linear),
+      CurvedAnimation(
+        parent: _animationController,
+        curve: widget.curve ?? Curves.linear,
+      ),
     );
   }
 
@@ -329,39 +343,29 @@ class _FlutterSwitchState extends State<FlutterSwitch>
                 color: _switchColor,
                 border: _switchBorder,
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Stack(
                 children: <Widget>[
-                  _toggleAnimation.value == Alignment.centerRight
-                      ? Expanded(
-                          child: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 4.0),
-                            child: _activeText,
-                          ),
-                        )
-                      : Container(),
-                  Align(
-                    alignment: _toggleAnimation.value,
-                    child: Container(
-                      width: widget.toggleSize,
-                      height: widget.toggleSize,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: _toggleColor ?? Colors.white,
-                        border: _toggleBorder,
+                  Container(
+                    alignment: Alignment.center,
+                    child: _toggleAnimation.value == Alignment.centerRight
+                        ? _activeText
+                        : _inactiveText,
+                  ),
+                  Container(
+                    child: Align(
+                      alignment: _toggleAnimation.value,
+                      child: Container(
+                        width: widget.toggleSize,
+                        height: widget.toggleSize,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: _toggleColor ?? Colors.white,
+                          border: _toggleBorder,
+                        ),
+                        child: _icon,
                       ),
-                      child: _icon,
                     ),
                   ),
-                  _toggleAnimation.value == Alignment.centerLeft
-                      ? Expanded(
-                          child: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 4.0),
-                            alignment: Alignment.centerRight,
-                            child: _inactiveText,
-                          ),
-                        )
-                      : Container(),
                 ],
               ),
             ),
