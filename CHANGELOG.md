@@ -41,3 +41,8 @@
 ## [0.2.1] - February 16, 2021
 
 * Handling the display of the switch in the AppBar
+
+## [0.2.2] - March 06, 2021
+
+* Made toggle animation smoother
+* Opacity animation for switch texts and icons

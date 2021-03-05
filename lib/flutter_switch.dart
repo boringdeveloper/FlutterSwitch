@@ -41,6 +41,7 @@ class FlutterSwitch extends StatefulWidget {
     this.inactiveToggleBorder,
     this.activeIcon,
     this.inactiveIcon,
+    this.duration = const Duration(milliseconds: 200),
   })  : assert(
             (toggleColor == null || activeToggleColor == null) &&
                 (toggleColor == null || inactiveToggleColor == null),
@@ -242,6 +243,11 @@ class FlutterSwitch extends StatefulWidget {
   /// This property is optional.
   final Icon inactiveIcon;
 
+  /// The duration in milliseconds to change the state of the switch
+  ///
+  /// Defaults to the value of 200 milliseconds.
+  final Duration duration;
+
   @override
   _FlutterSwitchState createState() => _FlutterSwitchState();
 }
@@ -257,13 +263,16 @@ class _FlutterSwitchState extends State<FlutterSwitch>
     _animationController = AnimationController(
       vsync: this,
       value: widget.value ? 1.0 : 0.0,
-      duration: Duration(milliseconds: 60),
+      duration: widget.duration,
     );
     _toggleAnimation = AlignmentTween(
       begin: Alignment.centerLeft,
       end: Alignment.centerRight,
     ).animate(
-      CurvedAnimation(parent: _animationController, curve: Curves.linear),
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.linear,
+      ),
     );
   }
 
@@ -291,21 +300,20 @@ class _FlutterSwitchState extends State<FlutterSwitch>
     Color _switchColor = Colors.white;
     Border _switchBorder;
     Border _toggleBorder;
-    Widget _icon;
 
     if (widget.value) {
       _toggleColor = widget.activeToggleColor ?? widget.toggleColor;
       _switchColor = widget.activeColor;
       _switchBorder = widget.activeSwitchBorder ?? widget.switchBorder;
       _toggleBorder = widget.activeToggleBorder ?? widget.toggleBorder;
-      _icon = widget.activeIcon;
     } else {
       _toggleColor = widget.inactiveToggleColor ?? widget.toggleColor;
       _switchColor = widget.inactiveColor;
       _switchBorder = widget.inactiveSwitchBorder ?? widget.switchBorder;
       _toggleBorder = widget.inactiveToggleBorder ?? widget.toggleBorder;
-      _icon = widget.inactiveIcon;
     }
+
+    double _textSpace = widget.width - widget.toggleSize;
 
     return AnimatedBuilder(
       animation: _animationController,
@@ -329,39 +337,65 @@ class _FlutterSwitchState extends State<FlutterSwitch>
                 color: _switchColor,
                 border: _switchBorder,
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Stack(
                 children: <Widget>[
-                  _toggleAnimation.value == Alignment.centerRight
-                      ? Expanded(
-                          child: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 4.0),
-                            child: _activeText,
-                          ),
-                        )
-                      : Container(),
-                  Align(
-                    alignment: _toggleAnimation.value,
+                  AnimatedOpacity(
+                    opacity: widget.value ? 1.0 : 0.0,
+                    duration: widget.duration,
                     child: Container(
-                      width: widget.toggleSize,
-                      height: widget.toggleSize,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: _toggleColor ?? Colors.white,
-                        border: _toggleBorder,
-                      ),
-                      child: _icon,
+                      width: _textSpace,
+                      padding: EdgeInsets.symmetric(horizontal: 4.0),
+                      alignment: Alignment.centerLeft,
+                      child: _activeText,
                     ),
                   ),
-                  _toggleAnimation.value == Alignment.centerLeft
-                      ? Expanded(
-                          child: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 4.0),
-                            alignment: Alignment.centerRight,
-                            child: _inactiveText,
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: AnimatedOpacity(
+                      opacity: !widget.value ? 1.0 : 0.0,
+                      duration: widget.duration,
+                      child: Container(
+                        width: _textSpace,
+                        padding: EdgeInsets.symmetric(horizontal: 4.0),
+                        alignment: Alignment.centerRight,
+                        child: _inactiveText,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    child: Align(
+                      alignment: _toggleAnimation.value,
+                      child: Container(
+                        width: widget.toggleSize,
+                        height: widget.toggleSize,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: _toggleColor ?? Colors.white,
+                          border: _toggleBorder,
+                        ),
+                        child: Container(
+                          child: Stack(
+                            children: [
+                              Center(
+                                child: AnimatedOpacity(
+                                  opacity: widget.value ? 1.0 : 0.0,
+                                  duration: widget.duration,
+                                  child: widget.activeIcon,
+                                ),
+                              ),
+                              Center(
+                                child: AnimatedOpacity(
+                                  opacity: !widget.value ? 1.0 : 0.0,
+                                  duration: widget.duration,
+                                  child: widget.inactiveIcon,
+                                ),
+                              ),
+                            ],
                           ),
-                        )
-                      : Container(),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
