@@ -1,4 +1,7 @@
 # flutter_switch
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![pub package](https://img.shields.io/pub/v/flutter_switch.svg)](https://pub.dev/packages/flutter_switch) [![pub points](https://badges.bar/flutter_switch/pub%20points)](https://pub.dev/packages/flutter_switch/score) [![popularity](https://badges.bar/flutter_switch/popularity)](https://pub.dev/packages/flutter_switch/score) [![likes](https://badges.bar/flutter_switch/likes)](https://pub.dev/packages/flutter_switch/score) <a href="https://github.com/boringdeveloper/FlutterSwitch/actions"><img src="https://img.shields.io/github/workflow/status/boringdeveloper/FlutterSwitch/Widget%20Test?label=build"></a>
 
@@ -121,3 +124,23 @@ multiple Flutter or Dart projects.
 For help getting started with Flutter, view our 
 [online documentation](https://flutter.dev/docs), which offers tutorials, 
 samples, guidance on mobile development, and a full API reference.
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/boringdeveloper"><img src="https://avatars.githubusercontent.com/u/21273958?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nickr</b></sub></a><br /><a href="https://github.com/boringdeveloper/FlutterSwitch/commits?author=boringdeveloper" title="Code">💻</a> <a href="https://github.com/boringdeveloper/FlutterSwitch/commits?author=boringdeveloper" title="Documentation">📖</a> <a href="#maintenance-boringdeveloper" title="Maintenance">🚧</a> <a href="https://github.com/boringdeveloper/FlutterSwitch/commits?author=boringdeveloper" title="Tests">⚠️</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
