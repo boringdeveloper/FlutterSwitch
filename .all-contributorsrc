@@ -1,0 +1,27 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "boringdeveloper",
+      "name": "Nickr",
+      "avatar_url": "https://avatars.githubusercontent.com/u/21273958?v=4",
+      "profile": "https://github.com/boringdeveloper",
+      "contributions": [
+        "code",
+        "doc",
+        "maintenance",
+        "test"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "FlutterSwitch",
+  "projectOwner": "boringdeveloper",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
