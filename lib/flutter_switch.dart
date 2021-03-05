@@ -41,8 +41,7 @@ class FlutterSwitch extends StatefulWidget {
     this.inactiveToggleBorder,
     this.activeIcon,
     this.inactiveIcon,
-    this.duration,
-    this.curve,
+    this.duration = const Duration(milliseconds: 200),
   })  : assert(
             (toggleColor == null || activeToggleColor == null) &&
                 (toggleColor == null || inactiveToggleColor == null),
@@ -246,13 +245,8 @@ class FlutterSwitch extends StatefulWidget {
 
   /// The duration in milliseconds to change the state of the switch
   ///
-  /// https://api.flutter.dev/flutter/dart-core/Duration-class.html
+  /// Defaults to the value of 200 milliseconds.
   final Duration duration;
-
-  /// An parametric animation easing curve, i.e. a mapping of the unit interval to the unit interval.
-  ///
-  /// https://api.flutter.dev/flutter/animation/Curves-class.html
-  final Curve curve;
 
   @override
   _FlutterSwitchState createState() => _FlutterSwitchState();
@@ -269,7 +263,7 @@ class _FlutterSwitchState extends State<FlutterSwitch>
     _animationController = AnimationController(
       vsync: this,
       value: widget.value ? 1.0 : 0.0,
-      duration: widget.duration ?? Duration(milliseconds: 60),
+      duration: widget.duration,
     );
     _toggleAnimation = AlignmentTween(
       begin: Alignment.centerLeft,
@@ -277,7 +271,7 @@ class _FlutterSwitchState extends State<FlutterSwitch>
     ).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: widget.curve ?? Curves.linear,
+        curve: Curves.linear,
       ),
     );
   }
@@ -306,21 +300,20 @@ class _FlutterSwitchState extends State<FlutterSwitch>
     Color _switchColor = Colors.white;
     Border _switchBorder;
     Border _toggleBorder;
-    Widget _icon;
 
     if (widget.value) {
       _toggleColor = widget.activeToggleColor ?? widget.toggleColor;
       _switchColor = widget.activeColor;
       _switchBorder = widget.activeSwitchBorder ?? widget.switchBorder;
       _toggleBorder = widget.activeToggleBorder ?? widget.toggleBorder;
-      _icon = widget.activeIcon;
     } else {
       _toggleColor = widget.inactiveToggleColor ?? widget.toggleColor;
       _switchColor = widget.inactiveColor;
       _switchBorder = widget.inactiveSwitchBorder ?? widget.switchBorder;
       _toggleBorder = widget.inactiveToggleBorder ?? widget.toggleBorder;
-      _icon = widget.inactiveIcon;
     }
+
+    double _textSpace = widget.width - widget.toggleSize;
 
     return AnimatedBuilder(
       animation: _animationController,
@@ -346,11 +339,28 @@ class _FlutterSwitchState extends State<FlutterSwitch>
               ),
               child: Stack(
                 children: <Widget>[
-                  Container(
-                    alignment: Alignment.center,
-                    child: _toggleAnimation.value == Alignment.centerRight
-                        ? _activeText
-                        : _inactiveText,
+                  AnimatedOpacity(
+                    opacity: widget.value ? 1.0 : 0.0,
+                    duration: widget.duration,
+                    child: Container(
+                      width: _textSpace,
+                      padding: EdgeInsets.symmetric(horizontal: 4.0),
+                      alignment: Alignment.centerLeft,
+                      child: _activeText,
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: AnimatedOpacity(
+                      opacity: !widget.value ? 1.0 : 0.0,
+                      duration: widget.duration,
+                      child: Container(
+                        width: _textSpace,
+                        padding: EdgeInsets.symmetric(horizontal: 4.0),
+                        alignment: Alignment.centerRight,
+                        child: _inactiveText,
+                      ),
+                    ),
                   ),
                   Container(
                     child: Align(
@@ -363,7 +373,26 @@ class _FlutterSwitchState extends State<FlutterSwitch>
                           color: _toggleColor ?? Colors.white,
                           border: _toggleBorder,
                         ),
-                        child: _icon,
+                        child: Container(
+                          child: Stack(
+                            children: [
+                              Center(
+                                child: AnimatedOpacity(
+                                  opacity: widget.value ? 1.0 : 0.0,
+                                  duration: widget.duration,
+                                  child: widget.activeIcon,
+                                ),
+                              ),
+                              Center(
+                                child: AnimatedOpacity(
+                                  opacity: !widget.value ? 1.0 : 0.0,
+                                  duration: widget.duration,
+                                  child: widget.inactiveIcon,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                   ),
