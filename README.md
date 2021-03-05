@@ -77,10 +77,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
 ## Want to Contribute?
 
-    Contributions to this project is very much welcome. Let's work together to maintain and improve the project
-    Simply Fork the repository, Commit and Push your changes and create a new Pull Request.
+Contributions to this project is very much welcome. Let's work together to maintain and improve the project
+Simply Fork the repository, Commit and Push your changes and create a new Pull Request.
+    
+Don't forget to try out the example project under the ./example folder.
+    
+Also test your changes by running this command.
+```bash
+$ flutter test
+```
 
-    If you have some suggestions, you can reach me at romero.nicholejohn@gmail.com
+If you have some suggestions, you can reach me at romero.nicholejohn@gmail.com
 
 # License
 
@@ -113,17 +120,6 @@ class _MyHomePageState extends State<MyHomePage> {
     CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
     OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
     OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-## Getting Started
-
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
 
 ## Contributors ✨
 
