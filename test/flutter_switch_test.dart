@@ -75,40 +75,6 @@ void main() {
     );
 
     testWidgets(
-      "throws an assertion error when both toggleColor and activeToggleColor property is not null",
-      (WidgetTester tester) async {
-        await tester.pumpWidget(
-          _FlutterSwitchTest(
-            status: false,
-            toggleColor: Colors.white,
-            activeToggleColor: Colors.blue,
-          ),
-        );
-
-        final assertion = tester.takeException();
-
-        expect(assertion, isAssertionError);
-      },
-    );
-
-    testWidgets(
-      "throws an assertion error when both toggleColor and inactiveToggleColor property is not null",
-      (WidgetTester tester) async {
-        await tester.pumpWidget(
-          _FlutterSwitchTest(
-            status: false,
-            toggleColor: Colors.blue,
-            inactiveToggleColor: Colors.blueGrey,
-          ),
-        );
-
-        final assertion = tester.takeException();
-
-        expect(assertion, isAssertionError);
-      },
-    );
-
-    testWidgets(
       "throws an assertion error when both switchBorder and activeSwitchBorder property is not null",
       (WidgetTester tester) async {
         await tester.pumpWidget(
@@ -205,22 +171,16 @@ void main() {
 /// A testbed class needed to test the [FlutterSwitch] widget.
 class _FlutterSwitchTest extends StatefulWidget {
   final bool status;
-  final Color toggleColor;
-  final Color activeToggleColor;
-  final Color inactiveToggleColor;
-  final Border switchBorder;
-  final Border activeSwitchBorder;
-  final Border inactiveSwitchBorder;
-  final Border toggleBorder;
-  final Border activeToggleBorder;
-  final Border inactiveToggleBorder;
+  final Border? switchBorder;
+  final Border? activeSwitchBorder;
+  final Border? inactiveSwitchBorder;
+  final Border? toggleBorder;
+  final Border? activeToggleBorder;
+  final Border? inactiveToggleBorder;
 
   _FlutterSwitchTest({
-    Key key,
-    this.status,
-    this.toggleColor,
-    this.activeToggleColor,
-    this.inactiveToggleColor,
+    Key? key,
+    required this.status,
     this.switchBorder,
     this.activeSwitchBorder,
     this.inactiveSwitchBorder,
@@ -251,9 +211,6 @@ class __FlutterSwitchTestState extends State<_FlutterSwitchTest> {
       home: Scaffold(
         body: FlutterSwitch(
           value: _status,
-          toggleColor: widget.toggleColor,
-          activeToggleColor: widget.activeToggleColor,
-          inactiveToggleColor: widget.inactiveToggleColor,
           switchBorder: widget.switchBorder,
           activeSwitchBorder: widget.activeSwitchBorder,
           inactiveSwitchBorder: widget.inactiveSwitchBorder,
