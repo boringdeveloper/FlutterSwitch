@@ -7,7 +7,7 @@
 
 An easy to implement custom switch created for Flutter. Give it a custom height and width, border for the switch and toggle, border radius, colors, toggle size, a choice to display an 'On' and 'Off' text and able to add an icon inside the toggle.
 
- [![GitHub followers](https://img.shields.io/github/followers/boringdeveloper.svg?style=social&label=Follow)](https://github.com/boringdeveloper)  <a href="https://www.linkedin.com/in/nichole-john-talban-romero/"><img src="https://image.flaticon.com/icons/svg/174/174857.svg" width="20"></a>
+ [![GitHub followers](https://img.shields.io/github/followers/boringdeveloper.svg?style=social&label=Follow)](https://github.com/boringdeveloper)  <a href="https://www.linkedin.com/in/nichole-john-talban-romero/"><img src="https://img.icons8.com/doodle/452/linkedin--v2.png" width="20"></a> <a href="https://twitter.com/nickrdev"><img src="https://img.icons8.com/doodle/452/twitter--v1.png" width="20"></a>
 
 ## Demo
 
@@ -23,6 +23,13 @@ Add this to your package's `pubspec.yaml` file:
 ```yaml
 dependencies:
   flutter_switch: ^0.2.2
+```
+
+For the null-safety version:
+
+```yaml
+dependencies:
+  flutter_switch: ^0.3.0-nullsafety.0
 ```
 
 You can install packages from the command line with Flutter:
