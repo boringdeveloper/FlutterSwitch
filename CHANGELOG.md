@@ -1,3 +1,8 @@
+## [0.3.0] - March 06, 2021
+
+* Migrated to null safety. Beware for possible breaking changes.
+* Added disabled property that expects a true or false value. Defaults to false if no value was passed.
+
 ## [0.3.0-nullsafety.0] - March 06, 2021
 
 * Migrated to null safety. Beware for possible breaking changes.
