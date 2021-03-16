@@ -42,6 +42,7 @@ class FlutterSwitch extends StatefulWidget {
     this.activeIcon,
     this.inactiveIcon,
     this.duration = const Duration(milliseconds: 200),
+    this.disabled = false,
   })  : assert(
             (switchBorder == null || activeSwitchBorder == null) &&
                 (switchBorder == null || inactiveSwitchBorder == null),
@@ -243,6 +244,11 @@ class FlutterSwitch extends StatefulWidget {
   /// Defaults to the value of 200 milliseconds.
   final Duration duration;
 
+  /// Determines whether the switch is disabled.
+  ///
+  /// Defaults to the value of false.
+  final bool disabled;
+
   @override
   _FlutterSwitchState createState() => _FlutterSwitchState();
 }
@@ -320,82 +326,87 @@ class _FlutterSwitchState extends State<FlutterSwitch>
         return Align(
           child: GestureDetector(
             onTap: () {
-              if (widget.value)
-                _animationController.forward();
-              else
-                _animationController.reverse();
+              if (!widget.disabled) {
+                if (widget.value)
+                  _animationController.forward();
+                else
+                  _animationController.reverse();
 
-              widget.onToggle(!widget.value);
+                widget.onToggle(!widget.value);
+              }
             },
-            child: Container(
-              width: widget.width,
-              height: widget.height,
-              padding: EdgeInsets.all(widget.padding),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(widget.borderRadius),
-                color: _switchColor,
-                border: _switchBorder,
-              ),
-              child: Stack(
-                children: <Widget>[
-                  AnimatedOpacity(
-                    opacity: widget.value ? 1.0 : 0.0,
-                    duration: widget.duration,
-                    child: Container(
-                      width: _textSpace,
-                      padding: EdgeInsets.symmetric(horizontal: 4.0),
-                      alignment: Alignment.centerLeft,
-                      child: _activeText,
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: AnimatedOpacity(
-                      opacity: !widget.value ? 1.0 : 0.0,
+            child: Opacity(
+              opacity: widget.disabled ? 0.6 : 1,
+              child: Container(
+                width: widget.width,
+                height: widget.height,
+                padding: EdgeInsets.all(widget.padding),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(widget.borderRadius),
+                  color: _switchColor,
+                  border: _switchBorder,
+                ),
+                child: Stack(
+                  children: <Widget>[
+                    AnimatedOpacity(
+                      opacity: widget.value ? 1.0 : 0.0,
                       duration: widget.duration,
                       child: Container(
                         width: _textSpace,
                         padding: EdgeInsets.symmetric(horizontal: 4.0),
-                        alignment: Alignment.centerRight,
-                        child: _inactiveText,
+                        alignment: Alignment.centerLeft,
+                        child: _activeText,
                       ),
                     ),
-                  ),
-                  Container(
-                    child: Align(
-                      alignment: _toggleAnimation.value,
-                      child: Container(
-                        width: widget.toggleSize,
-                        height: widget.toggleSize,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: _toggleColor,
-                          border: _toggleBorder,
-                        ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: AnimatedOpacity(
+                        opacity: !widget.value ? 1.0 : 0.0,
+                        duration: widget.duration,
                         child: Container(
-                          child: Stack(
-                            children: [
-                              Center(
-                                child: AnimatedOpacity(
-                                  opacity: widget.value ? 1.0 : 0.0,
-                                  duration: widget.duration,
-                                  child: widget.activeIcon,
+                          width: _textSpace,
+                          padding: EdgeInsets.symmetric(horizontal: 4.0),
+                          alignment: Alignment.centerRight,
+                          child: _inactiveText,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      child: Align(
+                        alignment: _toggleAnimation.value,
+                        child: Container(
+                          width: widget.toggleSize,
+                          height: widget.toggleSize,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: _toggleColor,
+                            border: _toggleBorder,
+                          ),
+                          child: Container(
+                            child: Stack(
+                              children: [
+                                Center(
+                                  child: AnimatedOpacity(
+                                    opacity: widget.value ? 1.0 : 0.0,
+                                    duration: widget.duration,
+                                    child: widget.activeIcon,
+                                  ),
                                 ),
-                              ),
-                              Center(
-                                child: AnimatedOpacity(
-                                  opacity: !widget.value ? 1.0 : 0.0,
-                                  duration: widget.duration,
-                                  child: widget.inactiveIcon,
+                                Center(
+                                  child: AnimatedOpacity(
+                                    opacity: !widget.value ? 1.0 : 0.0,
+                                    duration: widget.duration,
+                                    child: widget.inactiveIcon,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
