@@ -39,8 +39,8 @@ class FlutterSwitch extends StatefulWidget {
     this.toggleBorder,
     this.activeToggleBorder,
     this.inactiveToggleBorder,
-    this.activeIcon,
-    this.inactiveIcon,
+    this.activeWidget,
+    this.inactiveWidget,
     this.duration = const Duration(milliseconds: 200),
     this.disabled = false,
   })  : assert(
@@ -229,15 +229,15 @@ class FlutterSwitch extends StatefulWidget {
   /// This property is optional.
   final BoxBorder? inactiveToggleBorder;
 
-  /// The icon inside the toggle when the given value is true.
+  /// The widget inside the toggle when the given value is true.
   ///
   /// This property is optional.
-  final Icon? activeIcon;
+  final Widget? activeWidget;
 
-  /// The icon inside the toggle when the given value is false.
+  /// The widget inside the toggle when the given value is false.
   ///
   /// This property is optional.
-  final Icon? inactiveIcon;
+  final Widget? inactiveWidget;
 
   /// The duration in milliseconds to change the state of the switch
   ///
@@ -389,14 +389,14 @@ class _FlutterSwitchState extends State<FlutterSwitch>
                                   child: AnimatedOpacity(
                                     opacity: widget.value ? 1.0 : 0.0,
                                     duration: widget.duration,
-                                    child: widget.activeIcon,
+                                    child: widget.activeWidget,
                                   ),
                                 ),
                                 Center(
                                   child: AnimatedOpacity(
                                     opacity: !widget.value ? 1.0 : 0.0,
                                     duration: widget.duration,
-                                    child: widget.inactiveIcon,
+                                    child: widget.inactiveWidget,
                                   ),
                                 ),
                               ],
