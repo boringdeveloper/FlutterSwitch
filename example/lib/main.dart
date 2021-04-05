@@ -29,7 +29,6 @@ class _MyHomePageState extends State<MyHomePage> {
   bool status6 = false;
   bool status7 = false;
   bool status8 = false;
-  bool status9 = false;
   bool isSwitchOn = false;
 
   Color _textColor = Colors.black;
@@ -310,17 +309,17 @@ class _MyHomePageState extends State<MyHomePage> {
                       height: 40,
                       width: 100,
                       toggleSize: 40,
-                      value: status9,
+                      value: status8,
                       onToggle: (val) {
                         setState(() {
-                          status9 = val;
+                          status8 = val;
                         });
                       },
                     ),
                     Container(
                       alignment: Alignment.centerRight,
                       child: Text(
-                        "Value: $status9",
+                        "Value: $status8",
                       ),
                     ),
                   ],
