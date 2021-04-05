@@ -43,6 +43,7 @@ class FlutterSwitch extends StatefulWidget {
     this.inactiveIcon,
     this.duration = const Duration(milliseconds: 200),
     this.disabled = false,
+    this.toggleRatio = 1,
   })  : assert(
             (switchBorder == null || activeSwitchBorder == null) &&
                 (switchBorder == null || inactiveSwitchBorder == null),
@@ -249,6 +250,13 @@ class FlutterSwitch extends StatefulWidget {
   /// Defaults to the value of false.
   final bool disabled;
 
+  /// The toggle will be a rounded rectangle when the value is not 1.
+  ///
+  /// Width = Size * toggleRatio, Height = Size.
+  ///
+  /// Defaults to the value of 1.
+  final double toggleRatio;
+
   @override
   _FlutterSwitchState createState() => _FlutterSwitchState();
 }
@@ -375,11 +383,16 @@ class _FlutterSwitchState extends State<FlutterSwitch>
                       child: Align(
                         alignment: _toggleAnimation.value,
                         child: Container(
-                          width: widget.toggleSize,
+                          width: widget.toggleSize * widget.toggleRatio,
                           height: widget.toggleSize,
                           decoration: BoxDecoration(
-                            shape: BoxShape.circle,
+                            shape: widget.toggleRatio == 1
+                                ? BoxShape.circle
+                                : BoxShape.rectangle,
                             color: _toggleColor,
+                            borderRadius: widget.toggleRatio == 1
+                                ? null
+                                : BorderRadius.circular(widget.borderRadius),
                             border: _toggleBorder,
                           ),
                           child: Container(
@@ -417,6 +430,7 @@ class _FlutterSwitchState extends State<FlutterSwitch>
 
   FontWeight get _activeTextFontWeight =>
       widget.activeTextFontWeight ?? FontWeight.w900;
+
   FontWeight get _inactiveTextFontWeight =>
       widget.inactiveTextFontWeight ?? FontWeight.w900;
 

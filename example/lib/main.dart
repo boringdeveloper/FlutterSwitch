@@ -28,6 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool status5 = false;
   bool status6 = false;
   bool status7 = false;
+  bool status8 = false;
   bool isSwitchOn = false;
 
   Color _textColor = Colors.black;
@@ -297,6 +298,33 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ],
                 ),
+                SizedBox(height: 10.0),
+                Text("Rounded Rectangle Switch"),
+                SizedBox(height: 10.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    FlutterSwitch(
+                      toggleRatio: 1.5,
+                      height: 40,
+                      width: 100,
+                      toggleSize: 40,
+                      value: status8,
+                      onToggle: (val) {
+                        setState(() {
+                          status8 = val;
+                        });
+                      },
+                    ),
+                    Container(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        "Value: $status8",
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20.0),
               ],
             ),
           ),
