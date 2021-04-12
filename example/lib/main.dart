@@ -28,6 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool status5 = false;
   bool status6 = false;
   bool status7 = false;
+  bool status8 = false;
   bool isSwitchOn = false;
 
   Color _textColor = Colors.black;
@@ -294,6 +295,49 @@ class _MyHomePageState extends State<MyHomePage> {
                     Container(
                       alignment: Alignment.centerRight,
                       child: Text("Value: $status7"),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20.0),
+                Text("Image as toggle icon"),
+                SizedBox(height: 10.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    FlutterSwitch(
+                      width: 100.0,
+                      height: 55.0,
+                      toggleSize: 45.0,
+                      value: status8,
+                      borderRadius: 30.0,
+                      padding: 2.0,
+                      activeToggleColor: Color(0xFF0082C8),
+                      inactiveToggleColor: Color(0xFF01579B),
+                      activeSwitchBorder: Border.all(
+                        color: Color(0xFF00D2B8),
+                        width: 6.0,
+                      ),
+                      inactiveSwitchBorder: Border.all(
+                        color: Color(0xFF29B6F6),
+                        width: 6.0,
+                      ),
+                      activeColor: Color(0xFF55DDCA),
+                      inactiveColor: Color(0xFF54C5F8),
+                      activeIcon: Image.network(
+                        "https://img2.pngio.com/functional-bits-in-flutter-flutter-community-medium-flutter-png-1000_1000.png",
+                      ),
+                      inactiveIcon: Image.network(
+                        "https://upload.wikimedia.org/wikipedia/commons/7/7e/Dart-logo.png",
+                      ),
+                      onToggle: (val) {
+                        setState(() {
+                          status8 = val;
+                        });
+                      },
+                    ),
+                    Container(
+                      alignment: Alignment.centerRight,
+                      child: Text("Value: $status8"),
                     ),
                   ],
                 ),

@@ -1,3 +1,7 @@
+## [0.3.1] - April 12, 2021
+
+* Revised the activeIcon and inactiveIcon to accept other types of widget including Images, Icon and FontAwesome Icons.
+
 ## [0.3.0] - March 06, 2021
 
 * Migrated to null safety. Beware for possible breaking changes.
