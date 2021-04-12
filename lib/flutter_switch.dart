@@ -230,14 +230,16 @@ class FlutterSwitch extends StatefulWidget {
   final BoxBorder? inactiveToggleBorder;
 
   /// The icon inside the toggle when the given value is true.
+  /// activeIcon can be an Icon Widget, an Image or Fontawesome Icons.
   ///
   /// This property is optional.
-  final Icon? activeIcon;
+  final Widget? activeIcon;
 
   /// The icon inside the toggle when the given value is false.
+  /// inactiveIcon can be an Icon Widget, an Image or Fontawesome Icons.
   ///
   /// This property is optional.
-  final Icon? inactiveIcon;
+  final Widget? inactiveIcon;
 
   /// The duration in milliseconds to change the state of the switch
   ///
@@ -377,29 +379,33 @@ class _FlutterSwitchState extends State<FlutterSwitch>
                         child: Container(
                           width: widget.toggleSize,
                           height: widget.toggleSize,
+                          padding: EdgeInsets.all(4.0),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: _toggleColor,
                             border: _toggleBorder,
                           ),
-                          child: Container(
-                            child: Stack(
-                              children: [
-                                Center(
-                                  child: AnimatedOpacity(
-                                    opacity: widget.value ? 1.0 : 0.0,
-                                    duration: widget.duration,
-                                    child: widget.activeIcon,
+                          child: FittedBox(
+                            fit: BoxFit.contain,
+                            child: Container(
+                              child: Stack(
+                                children: [
+                                  Center(
+                                    child: AnimatedOpacity(
+                                      opacity: widget.value ? 1.0 : 0.0,
+                                      duration: widget.duration,
+                                      child: widget.activeIcon,
+                                    ),
                                   ),
-                                ),
-                                Center(
-                                  child: AnimatedOpacity(
-                                    opacity: !widget.value ? 1.0 : 0.0,
-                                    duration: widget.duration,
-                                    child: widget.inactiveIcon,
+                                  Center(
+                                    child: AnimatedOpacity(
+                                      opacity: !widget.value ? 1.0 : 0.0,
+                                      duration: widget.duration,
+                                      child: widget.inactiveIcon,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
