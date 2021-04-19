@@ -41,6 +41,8 @@ class FlutterSwitch extends StatefulWidget {
     this.inactiveToggleBorder,
     this.activeIcon,
     this.inactiveIcon,
+    this.activeWidget,
+    this.inactiveWidget,
   })  : assert(
             (toggleColor == null || activeToggleColor == null) &&
                 (toggleColor == null || inactiveToggleColor == null),
@@ -235,12 +237,15 @@ class FlutterSwitch extends StatefulWidget {
   /// The icon inside the toggle when the given value is true.
   ///
   /// This property is optional.
-  final Widget activeIcon;
+  final Icon activeIcon;
 
   /// The icon inside the toggle when the given value is false.
   ///
   /// This property is optional.
-  final Widget inactiveIcon;
+  final Icon inactiveIcon;
+
+  final Widget activeWidget;
+  final Widget inactiveWidget;
 
   @override
   _FlutterSwitchState createState() => _FlutterSwitchState();
@@ -298,13 +303,13 @@ class _FlutterSwitchState extends State<FlutterSwitch>
       _switchColor = widget.activeColor;
       _switchBorder = widget.activeSwitchBorder ?? widget.switchBorder;
       _toggleBorder = widget.activeToggleBorder ?? widget.toggleBorder;
-      _icon = widget.activeIcon;
+      _icon = widget.activeIcon ?? widget.activeWidget;
     } else {
       _toggleColor = widget.inactiveToggleColor ?? widget.toggleColor;
       _switchColor = widget.inactiveColor;
       _switchBorder = widget.inactiveSwitchBorder ?? widget.switchBorder;
       _toggleBorder = widget.inactiveToggleBorder ?? widget.toggleBorder;
-      _icon = widget.inactiveIcon;
+      _icon = widget.inactiveIcon ?? widget.inactiveWidget;
     }
 
     return AnimatedBuilder(
@@ -372,6 +377,7 @@ class _FlutterSwitchState extends State<FlutterSwitch>
   FontWeight get _activeTextFontWeight => widget.activeTextFontWeight != null
       ? widget.activeTextFontWeight
       : FontWeight.w900;
+
   FontWeight get _inactiveTextFontWeight =>
       widget.inactiveTextFontWeight != null
           ? widget.inactiveTextFontWeight

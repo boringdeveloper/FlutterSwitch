@@ -28,6 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool status5 = false;
   bool status6 = false;
   bool status7 = false;
+  bool status8 = false;
 
   Color _textColor = Colors.black;
   Color _appBarColor = Color.fromRGBO(36, 41, 46, 1);
@@ -286,6 +287,28 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ],
                 ),
+                SizedBox(height: 20.0),
+                Text("Image in toggle"),
+                SizedBox(height: 10.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    FlutterSwitch(
+                      value: status8,
+                      onToggle: (bool value) {
+                        setState(() {
+                          status8 = value;
+                        });
+                      },
+                      activeWidget: Image.asset('images/ON.png'),
+                      inactiveWidget: Image.asset('images/OFF.png'),
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Text("Value: $status8"),
+                    )
+                  ],
+                )
               ],
             ),
           ),
