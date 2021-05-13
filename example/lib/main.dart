@@ -29,10 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool status6 = false;
   bool status7 = false;
   bool status8 = false;
-<<<<<<< HEAD
   bool status9 = false;
-=======
->>>>>>> 24adaaf341fad6791d8be907093c55c09b59dbf5
   bool isSwitchOn = false;
 
   Color _textColor = Colors.black;
@@ -345,7 +342,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ],
                 ),
-<<<<<<< HEAD
                 SizedBox(height: 10.0),
                 Text("Rounded Rectangle Switch"),
                 SizedBox(height: 10.0),
@@ -373,8 +369,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
                 SizedBox(height: 20.0),
-=======
->>>>>>> 24adaaf341fad6791d8be907093c55c09b59dbf5
               ],
             ),
           ),
