@@ -29,6 +29,8 @@ class FlutterSwitch extends StatefulWidget {
     this.borderRadius = 20.0,
     this.padding = 4.0,
     this.showOnOff = false,
+    this.activeTrackWidget,
+    this.inactiveTrackWidget,
     this.activeText,
     this.inactiveText,
     this.activeTextFontWeight,
@@ -89,8 +91,23 @@ class FlutterSwitch extends StatefulWidget {
   /// Defaults to 'false' if no value was given.
   final bool showOnOff;
 
+  /// The custom widget to display on a tack when it is active.
+  /// This parameter is only necessary when [showOnOff] property is true.
+  ///
+  /// This property overrides the [activeText] property, so when this property
+  /// is used, the properties related to [activeText] are not usable
+  final Widget? activeTrackWidget;
+
+  /// The custom widget to display on a tack when it is inactive.
+  /// This parameter is only necessary when [showOnOff] property is true.
+  ///
+  /// This property overrides the [inactiveText] property, so when this property
+  /// is used, the properties related to [inactiveText] are not usable
+  final Widget? inactiveTrackWidget;
+
   /// The text to display when the switch is on.
   /// This parameter is only necessary when [showOnOff] property is true.
+  /// This parameter is not necessary when [activeTrackWidget] property is used.
   ///
   /// Defaults to 'On' if no value was given.
   ///
@@ -102,6 +119,7 @@ class FlutterSwitch extends StatefulWidget {
 
   /// The text to display when the switch is off.
   /// This parameter is only necessary when [showOnOff] property is true.
+  /// This parameter is not necessary when [inactiveTrackWidget] property is used.
   ///
   /// Defaults to 'Off' if no value was given.
   ///
@@ -123,24 +141,28 @@ class FlutterSwitch extends StatefulWidget {
 
   /// The color to use on the text value when the switch is on.
   /// This parameter is only necessary when [showOnOff] property is true.
+  /// This parameter is not necessary when [activeTrackWidget] property is used.
   ///
   /// Defaults to [Colors.white70].
   final Color activeTextColor;
 
   /// The color to use on the text value when the switch is off.
   /// This parameter is only necessary when [showOnOff] property is true.
+  /// This parameter is not necessary when [inactiveTrackWidget] property is used.
   ///
   /// Defaults to [Colors.white70].
   final Color inactiveTextColor;
 
   /// The font weight to use on the text value when the switch is on.
   /// This parameter is only necessary when [showOnOff] property is true.
+  /// This parameter is not necessary when [activeTrackWidget] property is used.
   ///
   /// Defaults to [FontWeight.w900].
   final FontWeight? activeTextFontWeight;
 
   /// The font weight to use on the text value when the switch is off.
   /// This parameter is only necessary when [showOnOff] property is true.
+  /// This parameter is not necessary when [inactiveTrackWidget] property is used.
   ///
   /// Defaults to [FontWeight.w900].
   final FontWeight? inactiveTextFontWeight;
@@ -181,6 +203,8 @@ class FlutterSwitch extends StatefulWidget {
 
   /// The font size of the values of the switch.
   /// This parameter is only necessary when [showOnOff] property is true.
+  /// This parameter is not necessary for each when [activeTrackWidget] or
+  /// [inactiveTrackWidget] properties are used.
   ///
   /// Defaults to a size of 16.0.
   final double valueFontSize;
@@ -359,7 +383,7 @@ class _FlutterSwitchState extends State<FlutterSwitch>
                           width: _textSpace,
                           padding: EdgeInsets.symmetric(horizontal: 4.0),
                           alignment: Alignment.centerLeft,
-                          child: _activeText,
+                          child: _activeTrackItem,
                         ),
                       ),
                       Align(
@@ -371,7 +395,7 @@ class _FlutterSwitchState extends State<FlutterSwitch>
                             width: _textSpace,
                             padding: EdgeInsets.symmetric(horizontal: 4.0),
                             alignment: Alignment.centerRight,
-                            child: _inactiveText,
+                            child: _inactiveTrackItem,
                           ),
                         ),
                       ),
@@ -429,32 +453,34 @@ class _FlutterSwitchState extends State<FlutterSwitch>
   FontWeight get _inactiveTextFontWeight =>
       widget.inactiveTextFontWeight ?? FontWeight.w900;
 
-  Widget get _activeText {
+  Widget get _activeTrackItem {
     if (widget.showOnOff) {
-      return Text(
-        widget.activeText ?? "On",
-        style: TextStyle(
-          color: widget.activeTextColor,
-          fontWeight: _activeTextFontWeight,
-          fontSize: widget.valueFontSize,
-        ),
-      );
+      return widget.activeTrackWidget ??
+          Text(
+            widget.activeText ?? "On",
+            style: TextStyle(
+              color: widget.activeTextColor,
+              fontWeight: _activeTextFontWeight,
+              fontSize: widget.valueFontSize,
+            ),
+          );
     }
 
     return Text("");
   }
 
-  Widget get _inactiveText {
+  Widget get _inactiveTrackItem {
     if (widget.showOnOff) {
-      return Text(
-        widget.inactiveText ?? "Off",
-        style: TextStyle(
-          color: widget.inactiveTextColor,
-          fontWeight: _inactiveTextFontWeight,
-          fontSize: widget.valueFontSize,
-        ),
-        textAlign: TextAlign.right,
-      );
+      return widget.inactiveTrackWidget ??
+          Text(
+            widget.inactiveText ?? "Off",
+            style: TextStyle(
+              color: widget.inactiveTextColor,
+              fontWeight: _inactiveTextFontWeight,
+              fontSize: widget.valueFontSize,
+            ),
+            textAlign: TextAlign.right,
+          );
     }
 
     return Text("");
