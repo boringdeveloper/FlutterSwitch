@@ -15,7 +15,9 @@ class FlutterSwitch extends StatefulWidget {
     Key? key,
     required this.value,
     required this.onToggle,
+    this.activeDecoration,
     this.activeColor = Colors.blue,
+    this.inactiveDecoration,
     this.inactiveColor = Colors.grey,
     this.activeTextColor = Colors.white70,
     this.inactiveTextColor = Colors.white70,
@@ -111,10 +113,20 @@ class FlutterSwitch extends StatefulWidget {
   /// [inactiveTextFontWeight] - The font weight to use on the text value when the switch is off.
   final String? inactiveText;
 
-  /// The color to use on the switch when the switch is on.
+  /// The decoration to use on the switch when the switch is on.
+  /// If null the other values like [activeColor], [borderRadius]
+  /// and [activeSwitchBorder] will be used.
+  final Decoration? activeDecoration;
+
+  /// The color to use on the switch when the switch is off.
   ///
   /// Defaults to [Colors.blue].
   final Color activeColor;
+
+  /// The decoration to use on the switch when the switch is off.
+  /// If null the other values like [inactiveColor], [borderRadius]
+  /// and [inactiveSwitchBorder] will be used.
+  final Decoration? inactiveDecoration;
 
   /// The color to use on the switch when the switch is off.
   ///
@@ -304,6 +316,9 @@ class _FlutterSwitchState extends State<FlutterSwitch>
     Border? _switchBorder;
     Border? _toggleBorder;
 
+    Decoration? decoration =
+        widget.value ? widget.activeDecoration : widget.inactiveDecoration;
+
     if (widget.value) {
       _toggleColor = widget.activeToggleColor ?? widget.toggleColor;
       _switchColor = widget.activeColor;
@@ -345,11 +360,13 @@ class _FlutterSwitchState extends State<FlutterSwitch>
                   width: widget.width,
                   height: widget.height,
                   padding: EdgeInsets.all(widget.padding),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(widget.borderRadius),
-                    color: _switchColor,
-                    border: _switchBorder,
-                  ),
+                  decoration: decoration ??
+                      BoxDecoration(
+                        borderRadius:
+                            BorderRadius.circular(widget.borderRadius),
+                        color: _switchColor,
+                        border: _switchBorder,
+                      ),
                   child: Stack(
                     children: <Widget>[
                       AnimatedOpacity(

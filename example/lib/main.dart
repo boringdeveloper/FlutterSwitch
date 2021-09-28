@@ -29,6 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool status6 = false;
   bool status7 = false;
   bool status8 = false;
+  bool status9 = false;
   bool isSwitchOn = false;
 
   Color _textColor = Colors.black;
@@ -129,16 +130,40 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
                 SizedBox(height: 20.0),
-                Text("With 'On' and 'Off' text and custom text colors"),
+                Text("Custom Decoration"),
                 SizedBox(height: 10.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     FlutterSwitch(
-                      showOnOff: true,
-                      activeTextColor: Colors.black,
-                      inactiveTextColor: Colors.blue[50],
+                      width: 100.0,
+                      height: 55.0,
+                      toggleSize: 45.0,
                       value: status3,
+                      padding: 2.0,
+                      toggleColor: Color.fromRGBO(225, 225, 225, 1),
+                      toggleBorder: Border.all(
+                        color: Color.fromRGBO(2, 107, 206, 1),
+                        width: 5.0,
+                      ),
+                      activeDecoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.red,
+                            Colors.orange,
+                          ],
+                        ),
+                      ),
+                      inactiveDecoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.blue,
+                            Colors.orange,
+                          ],
+                        ),
+                      ),
                       onToggle: (val) {
                         setState(() {
                           status3 = val;
@@ -154,16 +179,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
                 SizedBox(height: 20.0),
-                Text("Custom size"),
+                Text("With 'On' and 'Off' text and custom text colors"),
                 SizedBox(height: 10.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     FlutterSwitch(
-                      width: 55.0,
-                      height: 25.0,
-                      valueFontSize: 12.0,
-                      toggleSize: 18.0,
+                      showOnOff: true,
+                      activeTextColor: Colors.black,
+                      inactiveTextColor: Colors.blue[50],
                       value: status4,
                       onToggle: (val) {
                         setState(() {
@@ -180,20 +204,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
                 SizedBox(height: 20.0),
-                Text("Custom border radius and padding"),
+                Text("Custom size"),
                 SizedBox(height: 10.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     FlutterSwitch(
-                      width: 125.0,
-                      height: 55.0,
-                      valueFontSize: 25.0,
-                      toggleSize: 45.0,
+                      width: 55.0,
+                      height: 25.0,
+                      valueFontSize: 12.0,
+                      toggleSize: 18.0,
                       value: status5,
-                      borderRadius: 30.0,
-                      padding: 8.0,
-                      showOnOff: true,
                       onToggle: (val) {
                         setState(() {
                           status5 = val;
@@ -209,18 +230,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
                 SizedBox(height: 20.0),
-                Text("Custom text"),
+                Text("Custom border radius and padding"),
                 SizedBox(height: 10.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     FlutterSwitch(
-                      activeText: "All Good. Negative.",
-                      inactiveText: "Under Quarantine.",
+                      width: 125.0,
+                      height: 55.0,
+                      valueFontSize: 25.0,
+                      toggleSize: 45.0,
                       value: status6,
-                      valueFontSize: 10.0,
-                      width: 110,
                       borderRadius: 30.0,
+                      padding: 8.0,
                       showOnOff: true,
                       onToggle: (val) {
                         setState(() {
@@ -232,6 +254,34 @@ class _MyHomePageState extends State<MyHomePage> {
                       alignment: Alignment.centerRight,
                       child: Text(
                         "Value: $status6",
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20.0),
+                Text("Custom text"),
+                SizedBox(height: 10.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    FlutterSwitch(
+                      activeText: "All Good. Negative.",
+                      inactiveText: "Under Quarantine.",
+                      value: status7,
+                      valueFontSize: 10.0,
+                      width: 110,
+                      borderRadius: 30.0,
+                      showOnOff: true,
+                      onToggle: (val) {
+                        setState(() {
+                          status7 = val;
+                        });
+                      },
+                    ),
+                    Container(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        "Value: $status7",
                       ),
                     ),
                   ],
@@ -253,7 +303,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       width: 100.0,
                       height: 55.0,
                       toggleSize: 45.0,
-                      value: status7,
+                      value: status8,
                       borderRadius: 30.0,
                       padding: 2.0,
                       activeToggleColor: Color(0xFF6E40C9),
@@ -278,7 +328,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       onToggle: (val) {
                         setState(() {
-                          status7 = val;
+                          status8 = val;
 
                           if (val) {
                             _textColor = Colors.white;
@@ -294,7 +344,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     Container(
                       alignment: Alignment.centerRight,
-                      child: Text("Value: $status7"),
+                      child: Text("Value: $status8"),
                     ),
                   ],
                 ),
@@ -308,7 +358,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       width: 100.0,
                       height: 55.0,
                       toggleSize: 45.0,
-                      value: status8,
+                      value: status9,
                       borderRadius: 30.0,
                       padding: 2.0,
                       activeToggleColor: Color(0xFF0082C8),
@@ -331,13 +381,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       onToggle: (val) {
                         setState(() {
-                          status8 = val;
+                          status9 = val;
                         });
                       },
                     ),
                     Container(
                       alignment: Alignment.centerRight,
-                      child: Text("Value: $status8"),
+                      child: Text("Value: $status9"),
                     ),
                   ],
                 ),
