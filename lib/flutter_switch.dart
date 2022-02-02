@@ -41,6 +41,8 @@ class FlutterSwitch extends StatefulWidget {
     this.inactiveToggleBorder,
     this.activeIcon,
     this.inactiveIcon,
+    this.activeTextAlignment = Alignment.centerLeft,
+    this.inactiveTextAlignment = Alignment.centerRight,
     this.duration = const Duration(milliseconds: 200),
     this.disabled = false,
   })  : assert(
@@ -251,6 +253,16 @@ class FlutterSwitch extends StatefulWidget {
   /// Defaults to the value of false.
   final bool disabled;
 
+  /// The alignment of the text when the given value is true.
+  ///
+  /// Defaults to [Alignment.centerLeft].
+  final Alignment activeTextAlignment;
+
+  /// The alignment of the text when the given value is false.
+  ///
+  /// Defaults to [Alignment.centerRight].
+  final Alignment inactiveTextAlignment;
+
   @override
   _FlutterSwitchState createState() => _FlutterSwitchState();
 }
@@ -358,7 +370,7 @@ class _FlutterSwitchState extends State<FlutterSwitch>
                         child: Container(
                           width: _textSpace,
                           padding: EdgeInsets.symmetric(horizontal: 4.0),
-                          alignment: Alignment.centerLeft,
+                          alignment: widget.activeTextAlignment,
                           child: _activeText,
                         ),
                       ),
@@ -370,7 +382,7 @@ class _FlutterSwitchState extends State<FlutterSwitch>
                           child: Container(
                             width: _textSpace,
                             padding: EdgeInsets.symmetric(horizontal: 4.0),
-                            alignment: Alignment.centerRight,
+                            alignment: widget.inactiveTextAlignment,
                             child: _inactiveText,
                           ),
                         ),
@@ -391,20 +403,17 @@ class _FlutterSwitchState extends State<FlutterSwitch>
                               fit: BoxFit.contain,
                               child: Container(
                                 child: Stack(
+                                  alignment: Alignment.center,
                                   children: [
-                                    Center(
-                                      child: AnimatedOpacity(
-                                        opacity: widget.value ? 1.0 : 0.0,
-                                        duration: widget.duration,
-                                        child: widget.activeIcon,
-                                      ),
+                                    AnimatedOpacity(
+                                      opacity: widget.value ? 1.0 : 0.0,
+                                      duration: widget.duration,
+                                      child: widget.activeIcon,
                                     ),
-                                    Center(
-                                      child: AnimatedOpacity(
-                                        opacity: !widget.value ? 1.0 : 0.0,
-                                        duration: widget.duration,
-                                        child: widget.inactiveIcon,
-                                      ),
+                                    AnimatedOpacity(
+                                      opacity: !widget.value ? 1.0 : 0.0,
+                                      duration: widget.duration,
+                                      child: widget.inactiveIcon,
                                     ),
                                   ],
                                 ),
