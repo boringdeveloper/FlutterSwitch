@@ -10,11 +10,12 @@ class FlutterSwitch extends StatefulWidget {
   /// * [value] determines whether this switch is on or off.
   /// * [onToggle] is called when the user toggles the switch on or off.
   ///
-
   const FlutterSwitch({
     Key? key,
     required this.value,
     required this.onToggle,
+    this.activeDecoration,
+    this.inactiveDecoration,
     this.activeColor = Colors.blue,
     this.inactiveColor = Colors.grey,
     this.activeTextColor = Colors.white70,
@@ -29,6 +30,8 @@ class FlutterSwitch extends StatefulWidget {
     this.borderRadius = 20.0,
     this.padding = 4.0,
     this.showOnOff = false,
+    this.activeTrackWidget,
+    this.inactiveTrackWidget,
     this.activeText,
     this.inactiveText,
     this.activeTextFontWeight,
@@ -41,8 +44,12 @@ class FlutterSwitch extends StatefulWidget {
     this.inactiveToggleBorder,
     this.activeIcon,
     this.inactiveIcon,
+    this.activeTextAlignment = Alignment.centerLeft,
+    this.inactiveTextAlignment = Alignment.centerRight,
     this.duration = const Duration(milliseconds: 200),
     this.disabled = false,
+    this.togglePadding = const EdgeInsets.all(4),
+    this.toggleRatio = 1,
   })  : assert(
             (switchBorder == null || activeSwitchBorder == null) &&
                 (switchBorder == null || inactiveSwitchBorder == null),
@@ -94,6 +101,21 @@ class FlutterSwitch extends StatefulWidget {
   ///
   /// Defaults to 'On' if no value was given.
   ///
+  /// The custom widget to display on a tack when it is active.
+  /// This parameter is only necessary when [showOnOff] property is true.
+  ///
+  /// This property overrides the [activeText] property, so when this property
+  /// is used, the properties related to [activeText] are not usable
+  final Widget? activeTrackWidget;
+
+  /// The custom widget to display on a tack when it is inactive.
+  /// This parameter is only necessary when [showOnOff] property is true.
+  ///
+  /// This property overrides the [inactiveText] property, so when this property
+  /// is used, the properties related to [inactiveText] are not usable
+  final Widget? inactiveTrackWidget;
+
+  /// This parameter is not necessary when [activeTrackWidget] property is used.
   /// To change value style, the following properties are available
   ///
   /// [activeTextColor] - The color to use on the text value when the switch is on.
@@ -111,7 +133,17 @@ class FlutterSwitch extends StatefulWidget {
   /// [inactiveTextFontWeight] - The font weight to use on the text value when the switch is off.
   final String? inactiveText;
 
-  /// The color to use on the switch when the switch is on.
+  /// The decoration to use on the switch when the switch is on.
+  /// If null the other values like [activeColor], [borderRadius]
+  /// and [activeSwitchBorder] will be used.
+  final Decoration? activeDecoration;
+
+  /// The decoration to use on the switch when the switch is off.
+  /// If null the other values like [inactiveColor], [borderRadius]
+  /// and [inactiveSwitchBorder] will be used.
+  final Decoration? inactiveDecoration;
+
+  /// The color to use on the switch when the switch is off.
   ///
   /// Defaults to [Colors.blue].
   final Color activeColor;
@@ -141,6 +173,7 @@ class FlutterSwitch extends StatefulWidget {
 
   /// The font weight to use on the text value when the switch is off.
   /// This parameter is only necessary when [showOnOff] property is true.
+
   ///
   /// Defaults to [FontWeight.w900].
   final FontWeight? inactiveTextFontWeight;
@@ -241,6 +274,16 @@ class FlutterSwitch extends StatefulWidget {
   /// This property is optional.
   final Widget? inactiveIcon;
 
+  /// The alignment of the text when the given value is true.
+  ///
+  /// Defaults to [Alignment.centerLeft].
+  final Alignment activeTextAlignment;
+
+  /// The alignment of the text when the given value is false.
+  ///
+  /// Defaults to [Alignment.centerRight].
+  final Alignment inactiveTextAlignment;
+
   /// The duration in milliseconds to change the state of the switch
   ///
   /// Defaults to the value of 200 milliseconds.
@@ -250,6 +293,18 @@ class FlutterSwitch extends StatefulWidget {
   ///
   /// Defaults to the value of false.
   final bool disabled;
+
+  /// The padding of the toggle.
+  ///
+  /// Defaults to `EdgeInsets.all(4)`
+  final EdgeInsets togglePadding;
+
+  /// The toggle will be a rounded rectangle when the value is not 1.
+  ///
+  /// Width = Size * toggleRatio, Height = Size.
+  ///
+  /// Defaults to the value of 1.
+  final double toggleRatio;
 
   @override
   _FlutterSwitchState createState() => _FlutterSwitchState();
@@ -303,7 +358,8 @@ class _FlutterSwitchState extends State<FlutterSwitch>
     Color _switchColor = Colors.white;
     Border? _switchBorder;
     Border? _toggleBorder;
-
+    Decoration? decoration =
+        widget.value ? widget.activeDecoration : widget.inactiveDecoration;
     if (widget.value) {
       _toggleColor = widget.activeToggleColor ?? widget.toggleColor;
       _switchColor = widget.activeColor;
@@ -325,96 +381,96 @@ class _FlutterSwitchState extends State<FlutterSwitch>
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) {
-        return Container(
-          width: widget.width,
-          child: Align(
-            child: GestureDetector(
-              onTap: () {
-                if (!widget.disabled) {
-                  if (widget.value)
-                    _animationController.forward();
-                  else
-                    _animationController.reverse();
+        return Align(
+          child: GestureDetector(
+            onTap: () {
+              if (!widget.disabled) {
+                if (widget.value)
+                  _animationController.forward();
+                else
+                  _animationController.reverse();
 
-                  widget.onToggle(!widget.value);
-                }
-              },
-              child: Opacity(
-                opacity: widget.disabled ? 0.6 : 1,
-                child: Container(
-                  width: widget.width,
-                  height: widget.height,
-                  padding: EdgeInsets.all(widget.padding),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(widget.borderRadius),
-                    color: _switchColor,
-                    border: _switchBorder,
-                  ),
-                  child: Stack(
-                    children: <Widget>[
-                      AnimatedOpacity(
-                        opacity: widget.value ? 1.0 : 0.0,
+                widget.onToggle(!widget.value);
+              }
+            },
+            child: Opacity(
+              opacity: widget.disabled ? 0.6 : 1,
+              child: Container(
+                width: widget.width,
+                height: widget.height,
+                padding: EdgeInsets.all(widget.padding),
+                decoration: decoration ??
+                    BoxDecoration(
+                      borderRadius: BorderRadius.circular(widget.borderRadius),
+                      color: _switchColor,
+                      border: _switchBorder,
+                    ),
+                child: Stack(
+                  children: <Widget>[
+                    AnimatedOpacity(
+                      opacity: widget.value ? 1.0 : 0.0,
+                      duration: widget.duration,
+                      child: Container(
+                        width: _textSpace,
+                        padding: EdgeInsets.symmetric(horizontal: 4.0),
+                        alignment: widget.activeTextAlignment,
+                        child: _activeTrackItem,
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: AnimatedOpacity(
+                        opacity: !widget.value ? 1.0 : 0.0,
                         duration: widget.duration,
                         child: Container(
                           width: _textSpace,
                           padding: EdgeInsets.symmetric(horizontal: 4.0),
-                          alignment: Alignment.centerLeft,
-                          child: _activeText,
+                          alignment: widget.inactiveTextAlignment,
+                          child: _inactiveTrackItem,
                         ),
                       ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: AnimatedOpacity(
-                          opacity: !widget.value ? 1.0 : 0.0,
-                          duration: widget.duration,
-                          child: Container(
-                            width: _textSpace,
-                            padding: EdgeInsets.symmetric(horizontal: 4.0),
-                            alignment: Alignment.centerRight,
-                            child: _inactiveText,
+                    ),
+                    Container(
+                      child: Align(
+                        alignment: _toggleAnimation.value,
+                        child: Container(
+                          width: widget.toggleSize * widget.toggleRatio,
+                          height: widget.toggleSize,
+                          padding: widget.togglePadding,
+                          decoration: BoxDecoration(
+                            shape: widget.toggleRatio == 1
+                                ? BoxShape.circle
+                                : BoxShape.rectangle,
+                            color: _toggleColor,
+                            borderRadius: widget.toggleRatio == 1
+                                ? null
+                                : BorderRadius.circular(widget.borderRadius),
+                            border: _toggleBorder,
                           ),
-                        ),
-                      ),
-                      Container(
-                        child: Align(
-                          alignment: _toggleAnimation.value,
-                          child: Container(
-                            width: widget.toggleSize,
-                            height: widget.toggleSize,
-                            padding: EdgeInsets.all(4.0),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: _toggleColor,
-                              border: _toggleBorder,
-                            ),
-                            child: FittedBox(
-                              fit: BoxFit.contain,
-                              child: Container(
-                                child: Stack(
-                                  children: [
-                                    Center(
-                                      child: AnimatedOpacity(
-                                        opacity: widget.value ? 1.0 : 0.0,
-                                        duration: widget.duration,
-                                        child: widget.activeIcon,
-                                      ),
-                                    ),
-                                    Center(
-                                      child: AnimatedOpacity(
-                                        opacity: !widget.value ? 1.0 : 0.0,
-                                        duration: widget.duration,
-                                        child: widget.inactiveIcon,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                          child: FittedBox(
+                            fit: BoxFit.contain,
+                            child: Container(
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  AnimatedOpacity(
+                                    opacity: widget.value ? 1.0 : 0.0,
+                                    duration: widget.duration,
+                                    child: widget.activeIcon,
+                                  ),
+                                  AnimatedOpacity(
+                                    opacity: !widget.value ? 1.0 : 0.0,
+                                    duration: widget.duration,
+                                    child: widget.inactiveIcon,
+                                  ),
+                                ],
                               ),
                             ),
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -426,35 +482,38 @@ class _FlutterSwitchState extends State<FlutterSwitch>
 
   FontWeight get _activeTextFontWeight =>
       widget.activeTextFontWeight ?? FontWeight.w900;
+
   FontWeight get _inactiveTextFontWeight =>
       widget.inactiveTextFontWeight ?? FontWeight.w900;
 
-  Widget get _activeText {
+  Widget get _activeTrackItem {
     if (widget.showOnOff) {
-      return Text(
-        widget.activeText ?? "On",
-        style: TextStyle(
-          color: widget.activeTextColor,
-          fontWeight: _activeTextFontWeight,
-          fontSize: widget.valueFontSize,
-        ),
-      );
+      return widget.activeTrackWidget ??
+          Text(
+            widget.activeText ?? "On",
+            style: TextStyle(
+              color: widget.activeTextColor,
+              fontWeight: _activeTextFontWeight,
+              fontSize: widget.valueFontSize,
+            ),
+          );
     }
 
     return Text("");
   }
 
-  Widget get _inactiveText {
+  Widget get _inactiveTrackItem {
     if (widget.showOnOff) {
-      return Text(
-        widget.inactiveText ?? "Off",
-        style: TextStyle(
-          color: widget.inactiveTextColor,
-          fontWeight: _inactiveTextFontWeight,
-          fontSize: widget.valueFontSize,
-        ),
-        textAlign: TextAlign.right,
-      );
+      return widget.inactiveTrackWidget ??
+          Text(
+            widget.inactiveText ?? "Off",
+            style: TextStyle(
+              color: widget.inactiveTextColor,
+              fontWeight: _inactiveTextFontWeight,
+              fontSize: widget.valueFontSize,
+            ),
+            textAlign: TextAlign.right,
+          );
     }
 
     return Text("");

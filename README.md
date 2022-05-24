@@ -5,7 +5,7 @@
 
 [![pub package](https://img.shields.io/pub/v/flutter_switch.svg)](https://pub.dev/packages/flutter_switch) [![pub points](https://badges.bar/flutter_switch/pub%20points)](https://pub.dev/packages/flutter_switch/score) [![popularity](https://badges.bar/flutter_switch/popularity)](https://pub.dev/packages/flutter_switch/score) [![likes](https://badges.bar/flutter_switch/likes)](https://pub.dev/packages/flutter_switch/score) <a href="https://github.com/boringdeveloper/FlutterSwitch/actions"><img src="https://img.shields.io/github/workflow/status/boringdeveloper/FlutterSwitch/Widget%20Test?label=build"></a>
 
-An easy to implement custom switch created for Flutter. Give it a custom height and width, border for the switch and toggle, border radius, colors, toggle size, a choice to display an 'On' and 'Off' text and able to add an icon inside the toggle.
+An easy to implement custom switch created for Flutter. Give it a custom height and width, border for the switch and toggle, border radius, colors, toggle size, a choice to display an 'On' and 'Off' text and able to add an icon inside the toggle. You can also use your own custom widget to display instead of displaying an 'On' and 'Off' text.
 
  [![GitHub followers](https://img.shields.io/github/followers/boringdeveloper.svg?style=social&label=Follow)](https://github.com/boringdeveloper)  <a href="https://www.linkedin.com/in/nichole-john-talban-romero/"><img src="https://img.icons8.com/doodle/452/linkedin--v2.png" width="20"></a> <a href="https://twitter.com/nickrdev"><img src="https://img.icons8.com/doodle/452/twitter--v1.png" width="20"></a>
 
@@ -22,7 +22,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  flutter_switch: ^0.3.1
+  flutter_switch: ^0.3.3
 ```
 
 You can install packages from the command line with Flutter:
@@ -77,10 +77,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
 ## Want to Contribute?
 
-Contributions to this project is very much welcome. Let's work together to maintain and improve the project
+Contributions to this project is very much welcome. Let's work together to maintain and improve this project.  
 Simply Fork the repository, Commit and Push your changes and create a new Pull Request.
     
-Don't forget to try out the example project under the ./example folder.
+Don't forget to try out the example project under the [./example](https://github.com/boringdeveloper/FlutterSwitch/tree/master/example) folder.
     
 Also test your changes by running this command.
 ```bash
