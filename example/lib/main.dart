@@ -329,7 +329,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       onToggle: (val) {
                         setState(() {
                           status8 = val;
-
                           if (val) {
                             _textColor = Colors.white;
                             _appBarColor = Color.fromRGBO(22, 27, 34, 1);
