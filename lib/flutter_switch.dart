@@ -1,5 +1,5 @@
-library flutter_switch;
 
+library flutter_switch;
 import 'package:flutter/material.dart';
 
 class FlutterSwitch extends StatefulWidget {
@@ -230,13 +230,13 @@ class FlutterSwitch extends StatefulWidget {
   final BoxBorder? inactiveToggleBorder;
 
   /// The icon inside the toggle when the given value is true.
-  /// activeIcon can be an Icon Widget, an Image or Fontawesome Icons.
+  /// activeIcon can be an Icon Widget, an Image or FontAwesome Icons.
   ///
   /// This property is optional.
   final Widget? activeIcon;
 
   /// The icon inside the toggle when the given value is false.
-  /// inactiveIcon can be an Icon Widget, an Image or Fontawesome Icons.
+  /// inactiveIcon can be an Icon Widget, an Image or FontAwesome Icons.
   ///
   /// This property is optional.
   final Widget? inactiveIcon;
@@ -291,50 +291,52 @@ class _FlutterSwitchState extends State<FlutterSwitch>
 
     if (oldWidget.value == widget.value) return;
 
-    if (widget.value)
+    if (widget.value) {
       _animationController.forward();
-    else
+    } else {
       _animationController.reverse();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    Color _toggleColor = Colors.white;
-    Color _switchColor = Colors.white;
-    Border? _switchBorder;
-    Border? _toggleBorder;
+    Color toggleColor = Colors.white;
+    Color switchColor = Colors.white;
+    Border? switchBorder;
+    Border? toggleBorder;
 
     if (widget.value) {
-      _toggleColor = widget.activeToggleColor ?? widget.toggleColor;
-      _switchColor = widget.activeColor;
-      _switchBorder = widget.activeSwitchBorder as Border? ??
+      toggleColor = widget.activeToggleColor ?? widget.toggleColor;
+      switchColor = widget.activeColor;
+      switchBorder = widget.activeSwitchBorder as Border? ??
           widget.switchBorder as Border?;
-      _toggleBorder = widget.activeToggleBorder as Border? ??
+      toggleBorder = widget.activeToggleBorder as Border? ??
           widget.toggleBorder as Border?;
     } else {
-      _toggleColor = widget.inactiveToggleColor ?? widget.toggleColor;
-      _switchColor = widget.inactiveColor;
-      _switchBorder = widget.inactiveSwitchBorder as Border? ??
+      toggleColor = widget.inactiveToggleColor ?? widget.toggleColor;
+      switchColor = widget.inactiveColor;
+      switchBorder = widget.inactiveSwitchBorder as Border? ??
           widget.switchBorder as Border?;
-      _toggleBorder = widget.inactiveToggleBorder as Border? ??
+      toggleBorder = widget.inactiveToggleBorder as Border? ??
           widget.toggleBorder as Border?;
     }
 
-    double _textSpace = widget.width - widget.toggleSize;
+    double textSpace = widget.width - widget.toggleSize;
 
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) {
-        return Container(
+        return SizedBox(
           width: widget.width,
           child: Align(
             child: GestureDetector(
               onTap: () {
                 if (!widget.disabled) {
-                  if (widget.value)
+                  if (widget.value) {
                     _animationController.forward();
-                  else
+                  } else {
                     _animationController.reverse();
+                  }
 
                   widget.onToggle(!widget.value);
                 }
@@ -347,8 +349,8 @@ class _FlutterSwitchState extends State<FlutterSwitch>
                   padding: EdgeInsets.all(widget.padding),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(widget.borderRadius),
-                    color: _switchColor,
-                    border: _switchBorder,
+                    color: switchColor,
+                    border: switchBorder,
                   ),
                   child: Stack(
                     children: <Widget>[
@@ -356,8 +358,8 @@ class _FlutterSwitchState extends State<FlutterSwitch>
                         opacity: widget.value ? 1.0 : 0.0,
                         duration: widget.duration,
                         child: Container(
-                          width: _textSpace,
-                          padding: EdgeInsets.symmetric(horizontal: 4.0),
+                          width: textSpace,
+                          padding: const EdgeInsets.symmetric(horizontal: 4.0),
                           alignment: Alignment.centerLeft,
                           child: _activeText,
                         ),
@@ -368,47 +370,44 @@ class _FlutterSwitchState extends State<FlutterSwitch>
                           opacity: !widget.value ? 1.0 : 0.0,
                           duration: widget.duration,
                           child: Container(
-                            width: _textSpace,
-                            padding: EdgeInsets.symmetric(horizontal: 4.0),
+                            width: textSpace,
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 4.0),
                             alignment: Alignment.centerRight,
                             child: _inactiveText,
                           ),
                         ),
                       ),
-                      Container(
-                        child: Align(
-                          alignment: _toggleAnimation.value,
-                          child: Container(
-                            width: widget.toggleSize,
-                            height: widget.toggleSize,
-                            padding: EdgeInsets.all(4.0),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: _toggleColor,
-                              border: _toggleBorder,
-                            ),
-                            child: FittedBox(
-                              fit: BoxFit.contain,
-                              child: Container(
-                                child: Stack(
-                                  children: [
-                                    Center(
-                                      child: AnimatedOpacity(
-                                        opacity: widget.value ? 1.0 : 0.0,
-                                        duration: widget.duration,
-                                        child: widget.activeIcon,
-                                      ),
-                                    ),
-                                    Center(
-                                      child: AnimatedOpacity(
-                                        opacity: !widget.value ? 1.0 : 0.0,
-                                        duration: widget.duration,
-                                        child: widget.inactiveIcon,
-                                      ),
-                                    ),
-                                  ],
+                      Align(
+                        alignment: _toggleAnimation.value,
+                        child: Container(
+                          width: widget.toggleSize,
+                          height: widget.toggleSize,
+                          padding: const EdgeInsets.all(4.0),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: toggleColor,
+                            border: toggleBorder,
+                          ),
+                          child: FittedBox(
+                            fit: BoxFit.contain,
+                            child: Stack(
+                              children: [
+                                Center(
+                                  child: AnimatedOpacity(
+                                    opacity: widget.value ? 1.0 : 0.0,
+                                    duration: widget.duration,
+                                    child: widget.activeIcon,
+                                  ),
                                 ),
-                              ),
+                                Center(
+                                  child: AnimatedOpacity(
+                                    opacity: !widget.value ? 1.0 : 0.0,
+                                    duration: widget.duration,
+                                    child: widget.inactiveIcon,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -441,7 +440,7 @@ class _FlutterSwitchState extends State<FlutterSwitch>
       );
     }
 
-    return Text("");
+    return const SizedBox.shrink();
   }
 
   Widget get _inactiveText {
@@ -457,6 +456,6 @@ class _FlutterSwitchState extends State<FlutterSwitch>
       );
     }
 
-    return Text("");
+    return const SizedBox.shrink();
   }
 }
