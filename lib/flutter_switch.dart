@@ -317,6 +317,7 @@ class _FlutterSwitchState extends State<FlutterSwitch>
       _toggleBorder = widget.activeToggleBorder as Border? ??
           widget.toggleBorder as Border?;
     } else {
+      _gradient = null;
       _toggleColor = widget.inactiveToggleColor ?? widget.toggleColor;
       _switchColor = widget.inactiveColor;
       _switchBorder = widget.inactiveSwitchBorder as Border? ??
