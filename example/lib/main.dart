@@ -29,6 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool status6 = false;
   bool status7 = false;
   bool status8 = false;
+  bool status9 = false;
   bool isSwitchOn = false;
 
   Color _textColor = Colors.black;
@@ -341,6 +342,45 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ],
                 ),
+                SizedBox(height: 20.0),
+                Text("Gradient Example"),
+                SizedBox(height: 10.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    FlutterSwitch(
+                      value: status9,
+                      borderRadius: 30.0,
+                      padding: 2.0,
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment(0.8, 1),
+                        colors: <Color>[
+                          Color(0xff1f005c),
+                          Color(0xff5b0060),
+                          Color(0xff870160),
+                          Color(0xffac255e),
+                          Color(0xffca485c),
+                          Color(0xffe16b5c),
+                          Color(0xfff39060),
+                          Color(0xffffb56b),
+                        ],
+                      ),
+                      onToggle: (val) {
+                        setState(() {
+                          status9 = val;
+                        });
+                      },
+                    ),
+                    Container(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        "Value: $status9",
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20.0),
               ],
             ),
           ),

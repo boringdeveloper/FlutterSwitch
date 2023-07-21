@@ -11,7 +11,7 @@ An easy to implement custom switch created for Flutter. Give it a custom height 
 
 ## Demo
 
- ![flutter_switch](https://media0.giphy.com/media/zQ7AwA3SiAzqiFCW1o/giphy.gif) 
+ ![flutter_switch](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjdqeDV2YWo4YjZ0bXNvcHRzYjFoanUyaGdoNDQ0ZGh1Y2g3ZHQzdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/0bEpvlWRt6aXPdyyxP/giphy.gif) 
  
  Video version: https://youtu.be/JqJnxjE6Efc
 
@@ -62,6 +62,21 @@ class _MyHomePageState extends State<MyHomePage> {
             borderRadius: 30.0,
             padding: 8.0,
             showOnOff: true,
+            gradient: 
+              LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment(0.8, 1),
+                colors: <Color>[
+                  Color(0xff1f005c),
+                  Color(0xff5b0060),
+                  Color(0xff870160),
+                  Color(0xffac255e),
+                  Color(0xffca485c),
+                  Color(0xffe16b5c),
+                  Color(0xfff39060),
+                  Color(0xffffb56b),
+                ],
+              ),
             onToggle: (val) {
               setState(() {
                 status = val;

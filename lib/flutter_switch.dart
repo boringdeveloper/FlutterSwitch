@@ -43,6 +43,7 @@ class FlutterSwitch extends StatefulWidget {
     this.inactiveIcon,
     this.duration = const Duration(milliseconds: 200),
     this.disabled = false,
+    this.gradient,
   })  : assert(
             (switchBorder == null || activeSwitchBorder == null) &&
                 (switchBorder == null || inactiveSwitchBorder == null),
@@ -251,6 +252,8 @@ class FlutterSwitch extends StatefulWidget {
   /// Defaults to the value of false.
   final bool disabled;
 
+  final Gradient? gradient;
+
   @override
   _FlutterSwitchState createState() => _FlutterSwitchState();
 }
@@ -301,12 +304,14 @@ class _FlutterSwitchState extends State<FlutterSwitch>
   Widget build(BuildContext context) {
     Color _toggleColor = Colors.white;
     Color _switchColor = Colors.white;
+    Gradient? _gradient;
     Border? _switchBorder;
     Border? _toggleBorder;
 
     if (widget.value) {
       _toggleColor = widget.activeToggleColor ?? widget.toggleColor;
       _switchColor = widget.activeColor;
+      _gradient = widget.gradient;
       _switchBorder = widget.activeSwitchBorder as Border? ??
           widget.switchBorder as Border?;
       _toggleBorder = widget.activeToggleBorder as Border? ??
@@ -314,6 +319,7 @@ class _FlutterSwitchState extends State<FlutterSwitch>
     } else {
       _toggleColor = widget.inactiveToggleColor ?? widget.toggleColor;
       _switchColor = widget.inactiveColor;
+      _gradient = null;
       _switchBorder = widget.inactiveSwitchBorder as Border? ??
           widget.switchBorder as Border?;
       _toggleBorder = widget.inactiveToggleBorder as Border? ??
@@ -346,6 +352,7 @@ class _FlutterSwitchState extends State<FlutterSwitch>
                   height: widget.height,
                   padding: EdgeInsets.all(widget.padding),
                   decoration: BoxDecoration(
+                    gradient: _gradient,
                     borderRadius: BorderRadius.circular(widget.borderRadius),
                     color: _switchColor,
                     border: _switchBorder,
