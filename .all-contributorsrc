@@ -1,0 +1,64 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "boringdeveloper",
+      "name": "Nickr",
+      "avatar_url": "https://avatars.githubusercontent.com/u/21273958?v=4",
+      "profile": "https://github.com/boringdeveloper",
+      "contributions": [
+        "code",
+        "doc",
+        "maintenance",
+        "test"
+      ]
+    },
+    {
+      "login": "LucasED78",
+      "name": "Lucas Eduardo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/30601688?v=4",
+      "profile": "https://github.com/LucasED78",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "douglasramos",
+      "name": "Douglas Ramos",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12133412?v=4",
+      "profile": "https://github.com/douglasramos",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "solid-daniyilyevtyushkin",
+      "name": "Daniyil Yevtyushkin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/69351065?v=4",
+      "profile": "https://github.com/solid-daniyilyevtyushkin",
+      "contributions": [
+        "code",
+        "test"
+      ]
+    },
+    {
+      "login": "Maksim-Nikolaev",
+      "name": "Maksim Nikolaev",
+      "avatar_url": "https://avatars.githubusercontent.com/u/45855362?v=4",
+      "profile": "https://github.com/Maksim-Nikolaev",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "FlutterSwitch",
+  "projectOwner": "boringdeveloper",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
