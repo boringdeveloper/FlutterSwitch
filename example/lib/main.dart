@@ -102,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       toggleSize: 45.0,
                       value: status2,
                       borderRadius: 30.0,
-                      padding: 2.0,
+                      padding: const EdgeInsets.all(2.0),
                       toggleColor: Color.fromRGBO(225, 225, 225, 1),
                       switchBorder: Border.all(
                         color: Color.fromRGBO(2, 107, 206, 1),
@@ -137,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     FlutterSwitch(
                       showOnOff: true,
                       activeTextColor: Colors.black,
-                      inactiveTextColor: Colors.blue[50],
+                      inactiveTextColor: Colors.blue[50]!,
                       value: status3,
                       onToggle: (val) {
                         setState(() {
@@ -192,7 +192,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       toggleSize: 45.0,
                       value: status5,
                       borderRadius: 30.0,
-                      padding: 8.0,
+                      padding: const EdgeInsets.all(8),
                       showOnOff: true,
                       onToggle: (val) {
                         setState(() {
@@ -255,7 +255,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       toggleSize: 45.0,
                       value: status7,
                       borderRadius: 30.0,
-                      padding: 2.0,
+                      padding: const EdgeInsets.all(2),
                       activeToggleColor: Color(0xFF6E40C9),
                       inactiveToggleColor: Color(0xFF2F363D),
                       activeSwitchBorder: Border.all(
@@ -310,7 +310,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       toggleSize: 45.0,
                       value: status8,
                       borderRadius: 30.0,
-                      padding: 2.0,
+                      padding: const EdgeInsets.all(2),
                       activeToggleColor: Color(0xFF0082C8),
                       inactiveToggleColor: Color(0xFF01579B),
                       activeSwitchBorder: Border.all(
