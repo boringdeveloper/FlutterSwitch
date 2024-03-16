@@ -27,7 +27,7 @@ class FlutterSwitch extends StatefulWidget {
     this.toggleSize = 25.0,
     this.valueFontSize = 16.0,
     this.borderRadius = 20.0,
-    this.padding = 4.0,
+    this.padding = const EdgeInsets.all(4.0),
     this.showOnOff = false,
     this.activeText,
     this.inactiveText,
@@ -193,7 +193,7 @@ class FlutterSwitch extends StatefulWidget {
   /// The padding of the switch.
   ///
   /// Defaults to the value of 4.0.
-  final double padding;
+  final EdgeInsets padding;
 
   /// The border of the switch.
   ///
@@ -344,7 +344,7 @@ class _FlutterSwitchState extends State<FlutterSwitch>
                 child: Container(
                   width: widget.width,
                   height: widget.height,
-                  padding: EdgeInsets.all(widget.padding),
+                  padding: widget.padding,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(widget.borderRadius),
                     color: _switchColor,
